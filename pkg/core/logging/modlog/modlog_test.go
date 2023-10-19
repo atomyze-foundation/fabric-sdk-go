@@ -22,7 +22,7 @@ const (
 	moduleName2 = "module-xyz-deftest"
 )
 
-//change the output to buffer for tests
+// change the output to buffer for tests
 var buf bytes.Buffer
 
 func TestDefaultLoggingWithoutCallerInfo(t *testing.T) {

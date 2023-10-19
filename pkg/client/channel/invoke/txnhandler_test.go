@@ -488,7 +488,7 @@ func TestMergeInvocationChains(t *testing.T) {
 	})
 }
 
-//prepareHandlerContexts prepares context objects for handlers
+// prepareHandlerContexts prepares context objects for handlers
 func prepareRequestContext(request Request, opts Opts, t *testing.T) *RequestContext {
 	requestContext := &RequestContext{Request: request,
 		Opts:     opts,

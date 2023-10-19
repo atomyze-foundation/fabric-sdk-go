@@ -30,7 +30,7 @@ func (m *MockCoreContext) SigningManager() core.SigningManager {
 	return m.MockSigningManager
 }
 
-//CryptoSuiteConfig ...
+// CryptoSuiteConfig ...
 func (m *MockCoreContext) CryptoSuiteConfig() core.CryptoSuiteConfig {
 	return m.MockCryptoSuiteConfig
 }

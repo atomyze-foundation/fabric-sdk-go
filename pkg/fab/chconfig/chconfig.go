@@ -30,7 +30,7 @@ import (
 
 var logger = logging.NewLogger("fabsdk/fab")
 
-//overrideRetryHandler is private and used for unit-tests to test query retry behaviors
+// overrideRetryHandler is private and used for unit-tests to test query retry behaviors
 var overrideRetryHandler retry.Handler
 var versionCapabilityPattern = regexp.MustCompile(`^V(\d+(_\d+?)*)$`)
 
@@ -250,7 +250,7 @@ func (c *ChannelConfig) queryBlockFromOrderer(reqCtx reqContext.Context) (*commo
 	return resource.LastConfigFromOrderer(reqCtx, c.channelID, c.opts.Orderer, resource.WithRetry(c.opts.RetryOpts))
 }
 
-//resolveOptsFromConfig loads opts from config if not loaded/initialized
+// resolveOptsFromConfig loads opts from config if not loaded/initialized
 func (c *ChannelConfig) resolveOptsFromConfig(ctx context.Client) {
 
 	if c.opts.MaxTargets != 0 && c.opts.MinResponses != 0 && c.opts.RetryOpts.RetryableCodes != nil {
@@ -610,7 +610,7 @@ func peersToTxnProcessors(peers []fab.Peer) []fab.ProposalProcessor {
 	return tpp
 }
 
-//randomMaxTargets returns random sub set of max length targets
+// randomMaxTargets returns random sub set of max length targets
 func randomMaxTargets(targets []fab.ProposalProcessor, max int) []fab.ProposalProcessor {
 	if len(targets) <= max {
 		return targets

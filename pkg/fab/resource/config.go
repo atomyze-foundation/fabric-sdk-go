@@ -38,8 +38,9 @@ func CreateConfigSignature(ctx context.Client, config []byte) (*common.ConfigSig
 }
 
 // ConfigSignatureData holds data ready to be signed (SigningBytes) + Signature Header
-//    When building the common.ConfigSignature instance with the signed SigningBytes from the external tool,
-//    assign the returned ConfigSignatureData.SignatureHeader as part of the new ConfigSignature instance.
+//
+//	When building the common.ConfigSignature instance with the signed SigningBytes from the external tool,
+//	assign the returned ConfigSignatureData.SignatureHeader as part of the new ConfigSignature instance.
 type ConfigSignatureData struct {
 	SignatureHeader      common.SignatureHeader
 	SignatureHeaderBytes []byte
@@ -136,7 +137,7 @@ func CreateConfigEnvelope(data []byte) (*common.ConfigEnvelope, error) {
 	return configEnvelope, nil
 }
 
-//CreateConfigUpdateEnvelope creates configuration update envelope proto
+// CreateConfigUpdateEnvelope creates configuration update envelope proto
 func CreateConfigUpdateEnvelope(data []byte) (*common.ConfigUpdateEnvelope, error) {
 
 	envelope := &common.Envelope{}

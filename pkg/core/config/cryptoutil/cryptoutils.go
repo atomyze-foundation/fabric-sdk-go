@@ -110,7 +110,7 @@ func X509KeyPair(certPEMBlock []byte, pk core.Key, cs core.CryptoSuite) (tls.Cer
 	return cert, nil
 }
 
-//PrivateKey is signer implementation for golang client TLS
+// PrivateKey is signer implementation for golang client TLS
 type PrivateKey struct {
 	cryptoSuite core.CryptoSuite
 	key         core.Key

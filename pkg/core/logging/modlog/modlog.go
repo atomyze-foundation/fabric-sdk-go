@@ -34,19 +34,19 @@ var loggerProviderOnce sync.Once
 type Provider struct {
 }
 
-//GetLogger returns SDK logger implementation
+// GetLogger returns SDK logger implementation
 func (p *Provider) GetLogger(module string) api.Logger {
 	newDefLogger := log.New(os.Stdout, fmt.Sprintf(logPrefixFormatter, module), log.Ldate|log.Ltime|log.LUTC)
 	return &Log{deflogger: newDefLogger, module: module}
 }
 
-//LoggerProvider returns logging provider for SDK logger
+// LoggerProvider returns logging provider for SDK logger
 func LoggerProvider() api.LoggerProvider {
 	return &Provider{}
 }
 
-//InitLogger sets custom logger which will be used over deflogger.
-//It is required to call this function before making any loggings.
+// InitLogger sets custom logger which will be used over deflogger.
+// It is required to call this function before making any loggings.
 func InitLogger(l api.LoggerProvider) {
 	loggerProviderOnce.Do(func() {
 		loggerProviderInstance = l
@@ -54,7 +54,7 @@ func InitLogger(l api.LoggerProvider) {
 	})
 }
 
-//Log is a standard SDK logger implementation
+// Log is a standard SDK logger implementation
 type Log struct {
 	deflogger    *log.Logger
 	customLogger api.Logger
@@ -63,7 +63,7 @@ type Log struct {
 	once         sync.Once
 }
 
-//LoggerOpts  for all logger customization options
+// LoggerOpts  for all logger customization options
 type loggerOpts struct {
 	levelEnabled      bool
 	callerInfoEnabled bool
@@ -75,42 +75,42 @@ const (
 	callerInfoFormatter = "- %s "
 )
 
-//SetLevel - setting log level for given module
+// SetLevel - setting log level for given module
 func SetLevel(module string, level api.Level) {
 	rwmutex.Lock()
 	defer rwmutex.Unlock()
 	moduleLevels.SetLevel(module, level)
 }
 
-//GetLevel - getting log level for given module
+// GetLevel - getting log level for given module
 func GetLevel(module string) api.Level {
 	rwmutex.RLock()
 	defer rwmutex.RUnlock()
 	return moduleLevels.GetLevel(module)
 }
 
-//IsEnabledFor - Check if given log level is enabled for given module
+// IsEnabledFor - Check if given log level is enabled for given module
 func IsEnabledFor(module string, level api.Level) bool {
 	rwmutex.RLock()
 	defer rwmutex.RUnlock()
 	return moduleLevels.IsEnabledFor(module, level)
 }
 
-//ShowCallerInfo - Show caller info in log lines for given log level
+// ShowCallerInfo - Show caller info in log lines for given log level
 func ShowCallerInfo(module string, level api.Level) {
 	rwmutex.Lock()
 	defer rwmutex.Unlock()
 	callerInfos.ShowCallerInfo(module, level)
 }
 
-//HideCallerInfo - Do not show caller info in log lines for given log level
+// HideCallerInfo - Do not show caller info in log lines for given log level
 func HideCallerInfo(module string, level api.Level) {
 	rwmutex.Lock()
 	defer rwmutex.Unlock()
 	callerInfos.HideCallerInfo(module, level)
 }
 
-//getLoggerOpts - returns LoggerOpts which can be used for customization
+// getLoggerOpts - returns LoggerOpts which can be used for customization
 func getLoggerOpts(module string, level api.Level) *loggerOpts {
 	rwmutex.RLock()
 	defer rwmutex.RUnlock()
@@ -384,7 +384,7 @@ func (l *Log) Errorln(args ...interface{}) {
 	l.logln(opts, api.ERROR, args...)
 }
 
-//ChangeOutput for changing output destination for the logger.
+// ChangeOutput for changing output destination for the logger.
 func (l *Log) ChangeOutput(output io.Writer) {
 	l.deflogger.SetOutput(output)
 }

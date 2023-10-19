@@ -16,12 +16,12 @@ import (
 	"github.com/spf13/cast"
 )
 
-//New providers lookup wrapper around given backend
+// New providers lookup wrapper around given backend
 func New(coreBackends ...core.ConfigBackend) *ConfigLookup {
 	return &ConfigLookup{backends: coreBackends}
 }
 
-//unmarshalOpts opts for unmarshal key function
+// unmarshalOpts opts for unmarshal key function
 type unmarshalOpts struct {
 	hooks []mapstructure.DecodeHookFunc
 }
@@ -37,12 +37,12 @@ func WithUnmarshalHookFunction(hookFunction mapstructure.DecodeHookFunc) Unmarsh
 	}
 }
 
-//ConfigLookup is wrapper for core.ConfigBackend which performs key lookup and unmarshalling
+// ConfigLookup is wrapper for core.ConfigBackend which performs key lookup and unmarshalling
 type ConfigLookup struct {
 	backends []core.ConfigBackend
 }
 
-//Lookup returns value for given key
+// Lookup returns value for given key
 func (c *ConfigLookup) Lookup(key string) (interface{}, bool) {
 	//loop through each backend to find the value by key, fallback to next one if not found
 	for _, backend := range c.backends {
@@ -57,7 +57,7 @@ func (c *ConfigLookup) Lookup(key string) (interface{}, bool) {
 	return nil, false
 }
 
-//GetBool returns bool value for given key
+// GetBool returns bool value for given key
 func (c *ConfigLookup) GetBool(key string) bool {
 	value, ok := c.Lookup(key)
 	if !ok {
@@ -66,7 +66,7 @@ func (c *ConfigLookup) GetBool(key string) bool {
 	return cast.ToBool(value)
 }
 
-//GetString returns string value for given key
+// GetString returns string value for given key
 func (c *ConfigLookup) GetString(key string) string {
 	value, ok := c.Lookup(key)
 	if !ok {
@@ -75,7 +75,7 @@ func (c *ConfigLookup) GetString(key string) string {
 	return cast.ToString(value)
 }
 
-//GetLowerString returns lower case string value for given key
+// GetLowerString returns lower case string value for given key
 func (c *ConfigLookup) GetLowerString(key string) string {
 	value, ok := c.Lookup(key)
 	if !ok {
@@ -84,7 +84,7 @@ func (c *ConfigLookup) GetLowerString(key string) string {
 	return strings.ToLower(cast.ToString(value))
 }
 
-//GetInt returns int value for given key
+// GetInt returns int value for given key
 func (c *ConfigLookup) GetInt(key string) int {
 	value, ok := c.Lookup(key)
 	if !ok {
@@ -93,7 +93,7 @@ func (c *ConfigLookup) GetInt(key string) int {
 	return cast.ToInt(value)
 }
 
-//GetDuration returns time.Duration value for given key
+// GetDuration returns time.Duration value for given key
 func (c *ConfigLookup) GetDuration(key string) time.Duration {
 	value, ok := c.Lookup(key)
 	if !ok {
@@ -102,7 +102,7 @@ func (c *ConfigLookup) GetDuration(key string) time.Duration {
 	return cast.ToDuration(value)
 }
 
-//UnmarshalKey unmarshals value for given key to rawval type
+// UnmarshalKey unmarshals value for given key to rawval type
 func (c *ConfigLookup) UnmarshalKey(key string, rawVal interface{}, opts ...UnmarshalOption) error {
 	value, ok := c.Lookup(key)
 	if !ok {

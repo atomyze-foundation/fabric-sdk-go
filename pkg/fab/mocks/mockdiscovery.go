@@ -42,12 +42,12 @@ func (dp *MockStaticDiscoveryProvider) CreateLocalDiscoveryService(mspID string)
 	return NewMockDiscoveryService(dp.Error, dp.Peers...), nil
 }
 
-//SetCustomDiscoveryService sets custom discoveryService
+// SetCustomDiscoveryService sets custom discoveryService
 func (dp *MockStaticDiscoveryProvider) SetCustomDiscoveryService(customDiscoveryService fab.DiscoveryService) {
 	dp.customDiscoveryService = customDiscoveryService
 }
 
-//NewMockDiscoveryService returns a new MockStaticDiscoveryService
+// NewMockDiscoveryService returns a new MockStaticDiscoveryService
 func NewMockDiscoveryService(err error, peers ...fab.Peer) *MockStaticDiscoveryService {
 	return &MockStaticDiscoveryService{Error: err, Peers: peers}
 }

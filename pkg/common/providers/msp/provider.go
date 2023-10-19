@@ -23,7 +23,7 @@ type IdentityManagerProvider interface {
 	IdentityManager(orgName string) (IdentityManager, bool)
 }
 
-//IdentityConfig contains identity configurations
+// IdentityConfig contains identity configurations
 type IdentityConfig interface {
 	Client() *ClientConfig
 	CAConfig(caID string) (*CAConfig, bool)

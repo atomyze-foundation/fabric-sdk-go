@@ -55,8 +55,8 @@ func NewCertPool(useSystemCertPool bool) (CertPool, error) {
 	return newCertPool, nil
 }
 
-//Get returns certpool
-//if there are any certs in cert queue added by any previous Add() call, it adds those certs to certpool before returning
+// Get returns certpool
+// if there are any certs in cert queue added by any previous Add() call, it adds those certs to certpool before returning
 func (c *certPool) Get() (*x509.CertPool, error) {
 
 	//if dirty then add certs from queue to cert pool
@@ -74,7 +74,7 @@ func (c *certPool) Get() (*x509.CertPool, error) {
 	return c.certPool, nil
 }
 
-//Add adds given certs to cert pool queue, those certs will be added to certpool during subsequent Get() call
+// Add adds given certs to cert pool queue, those certs will be added to certpool during subsequent Get() call
 func (c *certPool) Add(certs ...*x509.Certificate) {
 	if len(certs) == 0 {
 		return
@@ -121,7 +121,7 @@ func (c *certPool) swapCertPool() error {
 	return nil
 }
 
-//filterCerts remove certs from list if they already exist in pool or duplicate
+// filterCerts remove certs from list if they already exist in pool or duplicate
 func (c *certPool) filterCerts(certs ...*x509.Certificate) []*x509.Certificate {
 	c.lock.RLock()
 	defer c.lock.RUnlock()

@@ -214,7 +214,7 @@ func getFabricConfig(config *mb.MSPConfig) (*mb.FabricMSPConfig, error) {
 	return fabricConfig, nil
 }
 
-//addCertsToConfig adds cert bytes to config TLSCACertPool
+// addCertsToConfig adds cert bytes to config TLSCACertPool
 func addCertsToConfig(config fab.EndpointConfig, pemCertsList [][]byte) {
 
 	if len(pemCertsList) == 0 {

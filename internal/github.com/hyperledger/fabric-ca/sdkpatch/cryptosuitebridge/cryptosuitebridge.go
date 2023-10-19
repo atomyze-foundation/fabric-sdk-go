@@ -57,17 +57,17 @@ func PrivateKeyToDER(privateKey *ecdsa.PrivateKey) ([]byte, error) {
 	return keyutil.PrivateKeyToDER(privateKey)
 }
 
-//GetDefault returns default cryptosuite from bccsp factory default
+// GetDefault returns default cryptosuite from bccsp factory default
 func GetDefault() core.CryptoSuite {
 	return cryptosuite.GetDefault()
 }
 
-//GetSHAOpts returns options for computing SHA.
+// GetSHAOpts returns options for computing SHA.
 func GetSHAOpts() core.HashOpts {
 	return &bccsp.SHAOpts{}
 }
 
-//GetSHA256Opts returns options relating to SHA-256.
+// GetSHA256Opts returns options relating to SHA-256.
 func GetSHA256Opts() core.HashOpts {
 	return &bccsp.SHA256Opts{}
 }
@@ -77,22 +77,22 @@ func GetECDSAKeyGenOpts(ephemeral bool) core.KeyGenOpts {
 	return &bccsp.ECDSAKeyGenOpts{Temporary: ephemeral}
 }
 
-//GetECDSAP256KeyGenOpts returns options for ECDSA key generation with curve P-256.
+// GetECDSAP256KeyGenOpts returns options for ECDSA key generation with curve P-256.
 func GetECDSAP256KeyGenOpts(ephemeral bool) core.KeyGenOpts {
 	return &bccsp.ECDSAP256KeyGenOpts{Temporary: ephemeral}
 }
 
-//GetECDSAP384KeyGenOpts options for ECDSA key generation with curve P-384.
+// GetECDSAP384KeyGenOpts options for ECDSA key generation with curve P-384.
 func GetECDSAP384KeyGenOpts(ephemeral bool) core.KeyGenOpts {
 	return &bccsp.ECDSAP384KeyGenOpts{Temporary: ephemeral}
 }
 
-//GetX509PublicKeyImportOpts options for importing public keys from an x509 certificate
+// GetX509PublicKeyImportOpts options for importing public keys from an x509 certificate
 func GetX509PublicKeyImportOpts(ephemeral bool) core.KeyImportOpts {
 	return &bccsp.X509PublicKeyImportOpts{Temporary: ephemeral}
 }
 
-//GetECDSAPrivateKeyImportOpts options for ECDSA secret key importation in DER format
+// GetECDSAPrivateKeyImportOpts options for ECDSA secret key importation in DER format
 // or PKCS#8 format.
 func GetECDSAPrivateKeyImportOpts(ephemeral bool) core.KeyImportOpts {
 	return &bccsp.ECDSAPrivateKeyImportOpts{Temporary: ephemeral}

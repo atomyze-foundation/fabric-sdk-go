@@ -8,11 +8,11 @@ SPDX-License-Identifier: [Default license](LICENSE)
 // Msp client supports the following actions:
 // Enroll, Reenroll, Register,  Revoke and GetSigningIdentity.
 //
-//  Basic Flow:
-//  1) Prepare client context
-//  2) Create msp client
-//  3) Register user
-//  4) Enroll user
+//	Basic Flow:
+//	1) Prepare client context
+//	2) Create msp client
+//	3) Register user
+//	4) Enroll user
 package msp
 
 import (
@@ -129,11 +129,12 @@ func newCAClient(ctx context.Client, orgName string, caID string) (mspapi.CAClie
 
 // CreateIdentity creates a new identity with the Fabric CA server. An enrollment secret is returned which can then be used,
 // along with the enrollment ID, to enroll a new identity.
-//  Parameters:
-//  request holds info about identity
 //
-//  Returns:
-//  Return identity info including the secret
+//	Parameters:
+//	request holds info about identity
+//
+//	Returns:
+//	Return identity info including the secret
 func (c *Client) CreateIdentity(request *IdentityRequest) (*IdentityResponse, error) {
 
 	ca, err := newCAClient(c.ctx, c.orgName, c.caID)
@@ -165,11 +166,12 @@ func (c *Client) CreateIdentity(request *IdentityRequest) (*IdentityResponse, er
 }
 
 // ModifyIdentity modifies identity with the Fabric CA server.
-//  Parameters:
-//  request holds info about identity
 //
-//  Returns:
-//  Return updated identity info
+//	Parameters:
+//	request holds info about identity
+//
+//	Returns:
+//	Return updated identity info
 func (c *Client) ModifyIdentity(request *IdentityRequest) (*IdentityResponse, error) {
 
 	ca, err := newCAClient(c.ctx, c.orgName, c.caID)
@@ -201,11 +203,12 @@ func (c *Client) ModifyIdentity(request *IdentityRequest) (*IdentityResponse, er
 }
 
 // RemoveIdentity removes identity with the Fabric CA server.
-//  Parameters:
-//  request holds info about identity to be removed
 //
-//  Returns:
-//  Return removed identity info
+//	Parameters:
+//	request holds info about identity to be removed
+//
+//	Returns:
+//	Return removed identity info
 func (c *Client) RemoveIdentity(request *RemoveIdentityRequest) (*IdentityResponse, error) {
 
 	ca, err := newCAClient(c.ctx, c.orgName, c.caID)
@@ -228,10 +231,11 @@ func (c *Client) RemoveIdentity(request *RemoveIdentityRequest) (*IdentityRespon
 }
 
 // GetAllIdentities returns all identities that the caller is authorized to see
-//  Parameters:
-//  options holds optional request options
-//  Returns:
-//  Response containing identities
+//
+//	Parameters:
+//	options holds optional request options
+//	Returns:
+//	Response containing identities
 func (c *Client) GetAllIdentities(opts ...RequestOption) ([]*IdentityResponse, error) {
 
 	o, err := c.prepareRequestOptsFromOptions(opts...)
@@ -254,12 +258,13 @@ func (c *Client) GetAllIdentities(opts ...RequestOption) ([]*IdentityResponse, e
 }
 
 // GetIdentity retrieves identity information.
-//  Parameters:
-//  ID is required identity ID
-//  options holds optional request options
 //
-//  Returns:
-//  Response containing identity information
+//	Parameters:
+//	ID is required identity ID
+//	options holds optional request options
+//
+//	Returns:
+//	Response containing identity information
 func (c *Client) GetIdentity(ID string, opts ...RequestOption) (*IdentityResponse, error) {
 
 	o, err := c.prepareRequestOptsFromOptions(opts...)
@@ -314,12 +319,13 @@ func getIdentityResponses(responses []*mspapi.IdentityResponse) []*IdentityRespo
 // A new key pair is generated for the user. The private key and the
 // enrollment certificate issued by the CA are stored in SDK stores.
 // They can be retrieved by calling IdentityManager.GetSigningIdentity().
-//  Parameters:
-//  enrollmentID enrollment ID of a registered user
-//  opts are optional enrollment options
 //
-//  Returns:
-//  an error if enrollment fails
+//	Parameters:
+//	enrollmentID enrollment ID of a registered user
+//	opts are optional enrollment options
+//
+//	Returns:
+//	an error if enrollment fails
 func (c *Client) Enroll(enrollmentID string, opts ...EnrollmentOption) error {
 
 	eo := enrollmentOptions{}
@@ -361,11 +367,12 @@ func (c *Client) Enroll(enrollmentID string, opts ...EnrollmentOption) error {
 }
 
 // Reenroll reenrolls an enrolled user in order to obtain a new signed X509 certificate
-//  Parameters:
-//  enrollmentID enrollment ID of a registered user
 //
-//  Returns:
-//  an error if re-enrollment fails
+//	Parameters:
+//	enrollmentID enrollment ID of a registered user
+//
+//	Returns:
+//	an error if re-enrollment fails
 func (c *Client) Reenroll(enrollmentID string, opts ...EnrollmentOption) error {
 	eo := enrollmentOptions{}
 	for _, param := range opts {
@@ -402,11 +409,12 @@ func (c *Client) Reenroll(enrollmentID string, opts ...EnrollmentOption) error {
 }
 
 // Register registers a User with the Fabric CA
-//  Parameters:
-//  request is registration request
 //
-//  Returns:
-//  enrolment secret
+//	Parameters:
+//	request is registration request
+//
+//	Returns:
+//	enrolment secret
 func (c *Client) Register(request *RegistrationRequest) (string, error) {
 	ca, err := newCAClient(c.ctx, c.orgName, c.caID)
 	if err != nil {
@@ -431,11 +439,12 @@ func (c *Client) Register(request *RegistrationRequest) (string, error) {
 }
 
 // Revoke revokes a User with the Fabric CA
-//  Parameters:
-//  request is revocation request
 //
-//  Returns:
-//  revocation response
+//	Parameters:
+//	request is revocation request
+//
+//	Returns:
+//	revocation response
 func (c *Client) Revoke(request *RevocationRequest) (*RevocationResponse, error) {
 	ca, err := newCAClient(c.ctx, c.orgName, c.caID)
 	if err != nil {
@@ -478,11 +487,12 @@ func (c *Client) GetCAInfo() (*GetCAInfoResponse, error) {
 }
 
 // GetSigningIdentity returns signing identity for id
-//  Parameters:
-//  id is user id
 //
-//  Returns:
-//  signing identity
+//	Parameters:
+//	id is user id
+//
+//	Returns:
+//	signing identity
 func (c *Client) GetSigningIdentity(id string) (mspctx.SigningIdentity, error) {
 	im, _ := c.ctx.IdentityManager(c.orgName)
 	si, err := im.GetSigningIdentity(id)
@@ -501,7 +511,7 @@ func (c *Client) CreateSigningIdentity(opts ...mspctx.SigningIdentityOption) (ms
 	return im.CreateSigningIdentity(opts...)
 }
 
-//prepareRequestOptsFromOptions reads request options from Option array
+// prepareRequestOptsFromOptions reads request options from Option array
 func (c *Client) prepareRequestOptsFromOptions(opts ...RequestOption) (requestOptions, error) {
 	o := requestOptions{}
 	for _, option := range opts {

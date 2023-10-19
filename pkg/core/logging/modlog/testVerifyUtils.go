@@ -28,7 +28,7 @@ const (
 type fn func(...interface{})
 type fnf func(string, ...interface{})
 
-//VerifyCriticalLoggings utility func which does job calling and verifying CRITICAL log level functions - PANIC
+// VerifyCriticalLoggings utility func which does job calling and verifying CRITICAL log level functions - PANIC
 func VerifyCriticalLoggings(t *testing.T, level api.Level, loggerFunc fn, loggerFuncf fnf, buf fmt.Stringer) {
 	//Handling panic as well as checking log output
 	defer func() {
@@ -58,7 +58,7 @@ func VerifyCriticalLoggings(t *testing.T, level api.Level, loggerFunc fn, logger
 	}
 }
 
-//VerifyBasicLogging utility func which does job calling and verifying basic log level functions - DEBUG, INFO, ERROR, WARNING
+// VerifyBasicLogging utility func which does job calling and verifying basic log level functions - DEBUG, INFO, ERROR, WARNING
 func VerifyBasicLogging(t *testing.T, level api.Level, loggerFunc fn, loggerFuncf fnf, buf *bytes.Buffer, verifyCustom bool, moduleName string) {
 
 	//Call logger func

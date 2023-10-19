@@ -98,12 +98,12 @@ func (cs *MockChannelService) Membership() (fab.ChannelMembership, error) {
 	return NewMockMembership(), nil
 }
 
-//SetCustomMembership sets custom channel membership for unit-test purposes
+// SetCustomMembership sets custom channel membership for unit-test purposes
 func (cs *MockChannelService) SetCustomMembership(customMembership fab.ChannelMembership) {
 	cs.membership = customMembership
 }
 
-//ChannelConfig returns channel config
+// ChannelConfig returns channel config
 func (cs *MockChannelService) ChannelConfig() (fab.ChannelCfg, error) {
 	return &MockChannelCfg{MockID: cs.channelID, MockOrderers: cs.mockOrderers}, nil
 }

@@ -49,7 +49,7 @@ func (m *MockCryptoSuite) Sign(k core.Key, digest []byte,
 	return []byte("testSignature"), nil
 }
 
-//Verify mock verify implementation
+// Verify mock verify implementation
 func (m *MockCryptoSuite) Verify(k core.Key, signature, digest []byte, opts core.SignerOpts) (valid bool, err error) {
 	return true, nil
 }

@@ -81,7 +81,7 @@ const SecretTag = "mask"
 // URLRegex is the regular expression to check if a value is an URL
 var URLRegex = regexp.MustCompile("(ldap|http)s*://(\\S+):(\\S+)@")
 
-//ECDSASignature forms the structure for R and S value for ECDSA
+// ECDSASignature forms the structure for R and S value for ECDSA
 type ECDSASignature struct {
 	R, S *big.Int
 }
@@ -158,7 +158,7 @@ func CreateToken(csp core.CryptoSuite, cert []byte, key core.Key, method, uri st
 	return token, nil
 }
 
-//GenECDSAToken signs the http body and cert with ECDSA using EC private key
+// GenECDSAToken signs the http body and cert with ECDSA using EC private key
 func GenECDSAToken(csp core.CryptoSuite, cert []byte, key core.Key, method, uri string, body []byte) (string, error) {
 	b64body := B64Encode(body)
 	b64cert := B64Encode(cert)

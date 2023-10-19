@@ -18,7 +18,7 @@ const (
 	DEBUG
 )
 
-//Logger - Standard logger interface
+// Logger - Standard logger interface
 type Logger interface {
 	Fatal(v ...interface{})
 

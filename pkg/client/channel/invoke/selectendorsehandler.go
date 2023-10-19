@@ -91,9 +91,9 @@ func (e *SelectAndEndorseHandler) Handle(requestContext *RequestContext, clientC
 	}
 }
 
-//NewChainedCCFilter returns a chaincode filter that chains
-//multiple filters together. False is returned if at least one
-//of the filters in the chain returns false.
+// NewChainedCCFilter returns a chaincode filter that chains
+// multiple filters together. False is returned if at least one
+// of the filters in the chain returns false.
 func NewChainedCCFilter(filters ...CCFilter) CCFilter {
 	return func(ccID string) bool {
 		for _, filter := range filters {

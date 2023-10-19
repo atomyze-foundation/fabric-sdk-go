@@ -66,18 +66,18 @@ func BadTLSClientMockConfig(mockCtrl *gomock.Controller) *MockEndpointConfig {
 	return config
 }
 
-//MockCertPool for unit tests to mock CertPool
+// MockCertPool for unit tests to mock CertPool
 type MockCertPool struct {
 	CertPool *x509.CertPool
 	Err      error
 }
 
-//Get mock implementation of fab CertPool.Get()
+// Get mock implementation of fab CertPool.Get()
 func (c *MockCertPool) Get() (*x509.CertPool, error) {
 	return c.CertPool, c.Err
 }
 
-//Add mock impl of adding certs to cert pool queue
+// Add mock impl of adding certs to cert pool queue
 func (c *MockCertPool) Add(certs ...*x509.Certificate) {
 
 }

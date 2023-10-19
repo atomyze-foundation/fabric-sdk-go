@@ -110,9 +110,9 @@ func orderersFromChannelCfg(ctx context.Client, cfg fab.ChannelCfg) ([]fab.Order
 	return orderers, nil
 }
 
-//deprecated
-//orderersFromChannel returns list of fab.Orderer by channel id
-//will return empty list when orderers are not found in endpoint config
+// deprecated
+// orderersFromChannel returns list of fab.Orderer by channel id
+// will return empty list when orderers are not found in endpoint config
 func orderersFromChannel(ctx context.Client, channelID string) ([]fab.Orderer, error) {
 
 	chNetworkConfig := ctx.EndpointConfig().ChannelConfig(channelID)

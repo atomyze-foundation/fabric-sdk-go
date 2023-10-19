@@ -89,7 +89,7 @@ type CommManager interface {
 	ReleaseConn(conn *grpc.ClientConn)
 }
 
-//EndpointConfig contains endpoint network configurations
+// EndpointConfig contains endpoint network configurations
 type EndpointConfig interface {
 	Timeout(TimeoutType) time.Duration
 	OrderersConfig() []OrdererConfig

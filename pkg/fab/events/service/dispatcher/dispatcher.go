@@ -651,7 +651,7 @@ func (ed *Dispatcher) RegisterHandler(t interface{}, h Handler) {
 	}
 }
 
-//UpdateLastBlockInfoOnly sets is next event should only be used for updating last block info.
+// UpdateLastBlockInfoOnly sets is next event should only be used for updating last block info.
 func (ed *Dispatcher) UpdateLastBlockInfoOnly() {
 	ed.updateLastBlockInfoOnly = true
 }

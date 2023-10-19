@@ -18,7 +18,7 @@ import (
 
 var logger = logging.NewLogger("fabsdk/core")
 
-//GetSuiteByConfig returns cryptosuite adaptor for bccsp loaded according to given config
+// GetSuiteByConfig returns cryptosuite adaptor for bccsp loaded according to given config
 func GetSuiteByConfig(config core.CryptoSuiteConfig) (core.CryptoSuite, error) {
 	// TODO: delete this check?
 	if config.SecurityProvider() != "sw" {
@@ -33,7 +33,7 @@ func GetSuiteByConfig(config core.CryptoSuiteConfig) (core.CryptoSuite, error) {
 	return wrapper.NewCryptoSuite(bccsp), nil
 }
 
-//GetSuiteWithDefaultEphemeral returns cryptosuite adaptor for bccsp with default ephemeral options (intended to aid testing)
+// GetSuiteWithDefaultEphemeral returns cryptosuite adaptor for bccsp with default ephemeral options (intended to aid testing)
 func GetSuiteWithDefaultEphemeral() (core.CryptoSuite, error) {
 	opts := getEphemeralOpts()
 
@@ -64,7 +64,7 @@ func GetSuite(securityLevel int, hashFamily string, keyStore bccsp.KeyStore) (co
 	return wrapper.NewCryptoSuite(bccsp), nil
 }
 
-//GetOptsByConfig Returns Factory opts for given SDK config
+// GetOptsByConfig Returns Factory opts for given SDK config
 func getOptsByConfig(c core.CryptoSuiteConfig) *bccspSw.SwOpts {
 	opts := &bccspSw.SwOpts{
 		HashFamily: c.SecurityAlgorithm(),

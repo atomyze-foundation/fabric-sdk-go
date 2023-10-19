@@ -293,12 +293,14 @@ func (cc *CachingConnector) ensureJanitorStarted() {
 // "connRemove" notifier is called.
 //
 // The caching connector:
-//    notifies the janitor of close by closing the "done" go channel.
+//
+//	notifies the janitor of close by closing the "done" go channel.
 //
 // The janitor:
-//    calls "connRemove" callback when closing a connection.
-//    decrements the "wg" waitgroup when exiting.
-//    writes to the "done" go channel when closing due to becoming empty.
+//
+//	calls "connRemove" callback when closing a connection.
+//	decrements the "wg" waitgroup when exiting.
+//	writes to the "done" go channel when closing due to becoming empty.
 func (cc *CachingConnector) janitor() {
 	logger.Debug("starting connection janitor")
 	defer cc.waitgroup.Done()

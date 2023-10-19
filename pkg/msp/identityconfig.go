@@ -33,7 +33,7 @@ import (
 var defaultCAServerSchema = "https"
 var defaultCAServerListenPort = 7054
 
-//ConfigFromBackend returns identity config implementation of given backend
+// ConfigFromBackend returns identity config implementation of given backend
 func ConfigFromBackend(coreBackend ...core.ConfigBackend) (msp.IdentityConfig, error) {
 
 	//create identity config
@@ -59,18 +59,18 @@ type IdentityConfig struct {
 	tlsCertPool         commtls.CertPool
 }
 
-//entityMatchers for identity configuration
+// entityMatchers for identity configuration
 type entityMatchers struct {
 	matchers map[string][]MatchConfig
 }
 
-//matcher entry mapping regex to match config
+// matcher entry mapping regex to match config
 type matcherEntry struct {
 	regex       *regexp.Regexp
 	matchConfig MatchConfig
 }
 
-//identityConfigEntity contains all config definitions needed
+// identityConfigEntity contains all config definitions needed
 type identityConfigEntity struct {
 	Client                 ClientConfig
 	Organizations          map[string]fabImpl.OrganizationConfig
@@ -86,7 +86,7 @@ type ClientConfig struct {
 	CredentialStore msp.CredentialStoreType
 }
 
-//ClientTLSConfig defines client TLS configuration in identity config
+// ClientTLSConfig defines client TLS configuration in identity config
 type ClientTLSConfig struct {
 	//Client TLS information
 	Client         endpoint.TLSKeyPair
@@ -131,7 +131,7 @@ func (c *IdentityConfig) CAConfig(caID string) (*msp.CAConfig, bool) {
 	return cfg, ok
 }
 
-//CAClientCert read configuration for the fabric CA client cert bytes for given org
+// CAClientCert read configuration for the fabric CA client cert bytes for given org
 func (c *IdentityConfig) CAClientCert(caID string) ([]byte, bool) {
 	cfg, ok := c.caConfigs[strings.ToLower(caID)]
 	if ok {
@@ -141,7 +141,7 @@ func (c *IdentityConfig) CAClientCert(caID string) ([]byte, bool) {
 	return nil, false
 }
 
-//CAClientKey read configuration for the fabric CA client key bytes for given org
+// CAClientKey read configuration for the fabric CA client key bytes for given org
 func (c *IdentityConfig) CAClientKey(caID string) ([]byte, bool) {
 	cfg, ok := c.caConfigs[strings.ToLower(caID)]
 	if ok {
@@ -179,7 +179,7 @@ func (c *IdentityConfig) CredentialStorePath() string {
 	return c.credentialStorePath
 }
 
-//loadIdentityConfigEntities loads config entities and dictionaries for searches
+// loadIdentityConfigEntities loads config entities and dictionaries for searches
 func (c *IdentityConfig) loadIdentityConfigEntities() error {
 	configEntity := identityConfigEntity{}
 
@@ -294,7 +294,7 @@ func appendCertsFromPEM(c commtls.CertPool, pemCerts []byte) (ok bool) {
 	return
 }
 
-//loadClientTLSConfig pre-loads all TLSConfig bytes in client config
+// loadClientTLSConfig pre-loads all TLSConfig bytes in client config
 func (c *IdentityConfig) loadClientTLSConfig(configEntity *identityConfigEntity) error {
 	//Clients Config
 	//resolve paths and org name
@@ -325,7 +325,7 @@ func (c *IdentityConfig) loadClientTLSConfig(configEntity *identityConfigEntity)
 	return nil
 }
 
-//loadCATLSConfig pre-loads all TLSConfig bytes in certificate authorities
+// loadCATLSConfig pre-loads all TLSConfig bytes in certificate authorities
 func (c *IdentityConfig) loadCATLSConfig(configEntity *identityConfigEntity) error {
 	//CA Config
 	for ca, caConfig := range configEntity.CertificateAuthorities {

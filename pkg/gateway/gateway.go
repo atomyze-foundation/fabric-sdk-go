@@ -69,13 +69,14 @@ type IdentityOption = func(*Gateway) error
 
 // Connect to a gateway defined by a network config file.
 // Must specify a config option, an identity option and zero or more strategy options.
-//  Parameters:
-//  config is a ConfigOption used to specify the network connection configuration.  This must contain connection details for at least one 'gateway' peer.
-//  identity is an IdentityOption which assigns a signing identity for all interactions under this Gateway connection.
-//  options specifies other gateway options
 //
-//  Returns:
-//  A Transaction object for subsequent evaluation or submission.
+//	Parameters:
+//	config is a ConfigOption used to specify the network connection configuration.  This must contain connection details for at least one 'gateway' peer.
+//	identity is an IdentityOption which assigns a signing identity for all interactions under this Gateway connection.
+//	options specifies other gateway options
+//
+//	Returns:
+//	A Transaction object for subsequent evaluation or submission.
 func Connect(config ConfigOption, identity IdentityOption, options ...Option) (*Gateway, error) {
 
 	g := &Gateway{
@@ -106,11 +107,11 @@ func Connect(config ConfigOption, identity IdentityOption, options ...Option) (*
 
 // WithConfig configures the gateway from a network config, such as a ccp file.
 //
-//   Parameters:
-//   config is a ConfigProvider function which provides config backend
+//	Parameters:
+//	config is a ConfigProvider function which provides config backend
 //
-//   Returns:
-//   A ConfigOption which can be passed as the first parameter to the Connect() function
+//	Returns:
+//	A ConfigOption which can be passed as the first parameter to the Connect() function
 func WithConfig(config core.ConfigProvider) ConfigOption {
 	return func(gw *Gateway) error {
 		config = createGatewayConfigProvider(config, gw.getOrg)
@@ -161,11 +162,11 @@ func WithConfig(config core.ConfigProvider) ConfigOption {
 
 // WithSDK configures the gateway with the configuration from an existing FabricSDK instance
 //
-//   Parameters:
-//   sdk is an instance of fabsdk.FabricSDK from which the configuration is extracted
+//	Parameters:
+//	sdk is an instance of fabsdk.FabricSDK from which the configuration is extracted
 //
-//   Returns:
-//   A ConfigOption which can be passed as the first parameter to the Connect() function
+//	Returns:
+//	A ConfigOption which can be passed as the first parameter to the Connect() function
 func WithSDK(sdk *fabsdk.FabricSDK) ConfigOption {
 	return func(gw *Gateway) error {
 		gw.sdk = sdk
@@ -190,12 +191,12 @@ func WithSDK(sdk *fabsdk.FabricSDK) ConfigOption {
 // the identity that is to be used to connect to the network.
 // All operations under this gateway connection will be performed using this identity.
 //
-//   Parameters:
-//   wallet is a Wallet implementation that contains identities
-//   label is the name of the identity in the wallet to associate with the gateway
+//	Parameters:
+//	wallet is a Wallet implementation that contains identities
+//	label is the name of the identity in the wallet to associate with the gateway
 //
-//   Returns:
-//   An IdentityOption which can be passed as the second parameter to the Connect() function
+//	Returns:
+//	An IdentityOption which can be passed as the second parameter to the Connect() function
 func WithIdentity(wallet wallet, label string) IdentityOption {
 	return func(gw *Gateway) error {
 		creds, err := wallet.Get(label)
@@ -223,11 +224,11 @@ func WithIdentity(wallet wallet, label string) IdentityOption {
 // The creadentials are extracted from the credential store specified in the connection profile.
 // All operations under this gateway connection will be performed using this identity.
 //
-//   Parameters:
-//   user is the name of the user in the credential store.
+//	Parameters:
+//	user is the name of the user in the credential store.
 //
-//   Returns:
-//   An IdentityOption which can be passed as the second parameter to the Connect() function
+//	Returns:
+//	An IdentityOption which can be passed as the second parameter to the Connect() function
 func WithUser(user string) IdentityOption {
 	return func(gw *Gateway) error {
 		gw.options.User = user
@@ -262,11 +263,12 @@ func WithSmartBFT() Option {
 }
 
 // GetNetwork returns an object representing a network channel.
-//  Parameters:
-//  name is the name of the network channel
 //
-//  Returns:
-//  A Network object representing the channel
+//	Parameters:
+//	name is the name of the network channel
+//
+//	Returns:
+//	A Network object representing the channel
 func (gw *Gateway) GetNetwork(name string) (*Network, error) {
 	var channelProvider context.ChannelProvider
 	if gw.options.Identity != nil {
@@ -325,19 +327,21 @@ func createGatewayConfig(backend core.ConfigBackend, org string) *gatewayConfig 
 	}
 }
 
-/* dynamically add the following to CCP:
+/*
+	dynamically add the following to CCP:
 
 entityMatchers:
-  peer:
-    - pattern: ([^:]+):(\\d+)
-      urlSubstitutionExp: localhost:${2}
-      sslTargetOverrideUrlSubstitutionExp: ${1}
-      mappedHost: ${1}
-  orderer:
-    - pattern: ([^:]+):(\\d+)
-      urlSubstitutionExp: localhost:${2}
-      sslTargetOverrideUrlSubstitutionExp: ${1}
-      mappedHost: ${1}
+
+	peer:
+	  - pattern: ([^:]+):(\\d+)
+	    urlSubstitutionExp: localhost:${2}
+	    sslTargetOverrideUrlSubstitutionExp: ${1}
+	    mappedHost: ${1}
+	orderer:
+	  - pattern: ([^:]+):(\\d+)
+	    urlSubstitutionExp: localhost:${2}
+	    sslTargetOverrideUrlSubstitutionExp: ${1}
+	    mappedHost: ${1}
 */
 func createLocalhostMappings() map[string][]map[string]string {
 	matchers := make(map[string][]map[string]string)
@@ -356,16 +360,18 @@ func createLocalhostMappings() map[string][]map[string]string {
 	return matchers
 }
 
-/* dynamically add the following to CCP:
+/*
+	dynamically add the following to CCP:
 
 channels:
-  _default:
-    peers:
-      <gateway_peer_name>:
-        endorsingPeer: true
-        chaincodeQuery: true
-        ledgerQuery: true
-        eventSource: true
+
+	_default:
+	  peers:
+	    <gateway_peer_name>:
+	      endorsingPeer: true
+	      chaincodeQuery: true
+	      ledgerQuery: true
+	      eventSource: true
 */
 func createDefaultChannelConfig(backend core.ConfigBackend, org string) map[string]map[string]map[string]map[string]bool {
 	channels := make(map[string]map[string]map[string]map[string]bool)

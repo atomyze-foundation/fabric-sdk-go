@@ -32,7 +32,7 @@ type ChannelEndpointConfig struct {
 	Policies ChannelPolicies
 }
 
-//ChannelPolicies defines list of policies defined for a channel
+// ChannelPolicies defines list of policies defined for a channel
 type ChannelPolicies struct {
 	//Policy for querying channel block
 	QueryChannelConfig QueryChannelConfigPolicy
@@ -41,14 +41,14 @@ type ChannelPolicies struct {
 	EventService       EventServicePolicy
 }
 
-//QueryChannelConfigPolicy defines policy for channelConfigBlock
+// QueryChannelConfigPolicy defines policy for channelConfigBlock
 type QueryChannelConfigPolicy struct {
 	MinResponses int
 	MaxTargets   int
 	RetryOpts    retry.Opts
 }
 
-//DiscoveryPolicy defines policy for discovery
+// DiscoveryPolicy defines policy for discovery
 type DiscoveryPolicy struct {
 	MinResponses int
 	MaxTargets   int
@@ -78,7 +78,7 @@ const (
 	Random BalancerType = "Random"
 )
 
-//SelectionPolicy defines policy for selection
+// SelectionPolicy defines policy for selection
 type SelectionPolicy struct {
 	// SortingStrategy is the endorser sorting strategy to use
 	SortingStrategy SelectionSortingStrategy

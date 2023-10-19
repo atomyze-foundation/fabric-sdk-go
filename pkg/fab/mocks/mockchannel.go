@@ -15,24 +15,24 @@ import (
 	mspmocks "github.com/hyperledger/fabric-sdk-go/pkg/msp/test/mockmsp"
 )
 
-//Channel supplies the configuration for channel context client
+// Channel supplies the configuration for channel context client
 type Channel struct {
 	context.Client
 	channelService fab.ChannelService
 	channelID      string
 }
 
-//Providers returns core providers
+// Providers returns core providers
 func (c *Channel) Providers() context.Client {
 	return c
 }
 
-//ChannelService returns channel service
+// ChannelService returns channel service
 func (c *Channel) ChannelService() fab.ChannelService {
 	return c.channelService
 }
 
-//ChannelID returns channel ID
+// ChannelID returns channel ID
 func (c *Channel) ChannelID() string {
 	return c.channelID
 }
@@ -42,7 +42,7 @@ type mockClientContext struct {
 	msp.SigningIdentity
 }
 
-//NewMockChannel creates new mock channel
+// NewMockChannel creates new mock channel
 func NewMockChannel(channelID string) (*Channel, error) {
 
 	ctx := &mockClientContext{

@@ -13,12 +13,12 @@ type callerInfoKey struct {
 	level  api.Level
 }
 
-//CallerInfo maintains module-level based information to toggle caller info
+// CallerInfo maintains module-level based information to toggle caller info
 type CallerInfo struct {
 	showcaller map[callerInfoKey]bool
 }
 
-//ShowCallerInfo enables caller info for given module and level
+// ShowCallerInfo enables caller info for given module and level
 func (l *CallerInfo) ShowCallerInfo(module string, level api.Level) {
 	if l.showcaller == nil {
 		l.showcaller = l.getDefaultCallerInfoSetting()
@@ -26,7 +26,7 @@ func (l *CallerInfo) ShowCallerInfo(module string, level api.Level) {
 	l.showcaller[callerInfoKey{module, level}] = true
 }
 
-//HideCallerInfo disables caller info for given module and level
+// HideCallerInfo disables caller info for given module and level
 func (l *CallerInfo) HideCallerInfo(module string, level api.Level) {
 	if l.showcaller == nil {
 		l.showcaller = l.getDefaultCallerInfoSetting()
@@ -34,7 +34,7 @@ func (l *CallerInfo) HideCallerInfo(module string, level api.Level) {
 	l.showcaller[callerInfoKey{module, level}] = false
 }
 
-//IsCallerInfoEnabled returns if callerinfo enabled for given module and level
+// IsCallerInfoEnabled returns if callerinfo enabled for given module and level
 func (l *CallerInfo) IsCallerInfoEnabled(module string, level api.Level) bool {
 	showcaller, exists := l.showcaller[callerInfoKey{module, level}]
 	if !exists {
@@ -47,7 +47,7 @@ func (l *CallerInfo) IsCallerInfoEnabled(module string, level api.Level) bool {
 	return showcaller
 }
 
-//getDefaultCallerInfoSetting default setting for callerinfo
+// getDefaultCallerInfoSetting default setting for callerinfo
 func (l *CallerInfo) getDefaultCallerInfoSetting() map[callerInfoKey]bool {
 	return map[callerInfoKey]bool{
 		{"", api.CRITICAL}: true,

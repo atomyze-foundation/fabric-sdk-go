@@ -147,7 +147,7 @@ func TestOrderersFromChannelCfg(t *testing.T) {
 }
 
 // TestOrderersFromChannel - tests scenario where err should not be returned if channel config is not found
-//instead, empty orderers list should be returned
+// instead, empty orderers list should be returned
 func TestOrderersFromChannel(t *testing.T) {
 	user := mspmocks.NewMockSigningIdentity("test", "test")
 	ctx := mocks.NewMockContext(user)
@@ -306,13 +306,13 @@ func TestExcludedOrdrerer(t *testing.T) {
 	var orderersCfgs []fab.OrdererConfig
 	for _, v := range networkConfig.Orderers {
 		orderersCfgs = append(orderersCfgs, fab.OrdererConfig{
-			URL: v.URL,
+			URL:         v.URL,
 			GRPCOptions: v.GRPCOptions,
 		})
 	}
 
 	mockEndpoingCfg.EXPECT().ChannelConfig("mychannel").Return(&fab.ChannelEndpointConfig{
-		Orderers: []string{}})  // empty channel.Orderers SDK config, to force fetching from orderers SDK config
+		Orderers: []string{}}) // empty channel.Orderers SDK config, to force fetching from orderers SDK config
 	mockEndpoingCfg.EXPECT().OrdererConfig("example.com").Return(&orderersCfgs[0], true, false)
 	mockEndpoingCfg.EXPECT().OrdererConfig("example2.com").Return(&orderersCfgs[1], true, false)
 	mockEndpoingCfg.EXPECT().OrdererConfig("example3.com").Return(nil, false, true) // true means ignored
@@ -342,7 +342,6 @@ func TestExcludedOrdrerer(t *testing.T) {
 	assert.NotEmpty(t, o)
 	assert.Equal(t, 2, len(o), "expected 2 orderers from response orderers list")
 
-
 	// now retry the same previous two tests with channelConfig returning list of orderers
 	mockEndpoingCfg.EXPECT().ChannelConfig("mychannel").Return(&fab.ChannelEndpointConfig{
 		Orderers: chConfig.MockOrderers}) // read orderers from channel.Orderers SDK config
@@ -361,10 +360,10 @@ func TestExcludedOrdrerer(t *testing.T) {
 
 	// now try with example2.com not found, to be populated from chConfig
 	mockEndpoingCfg.EXPECT().ChannelConfig("mychannel").Return(&fab.ChannelEndpointConfig{
-		Orderers: chConfig.MockOrderers})  // read orderers from channel.Orderers SDK config
+		Orderers: chConfig.MockOrderers}) // read orderers from channel.Orderers SDK config
 	mockEndpoingCfg.EXPECT().OrdererConfig("example.com").Return(&orderersCfgs[0], true, false) // found
-	mockEndpoingCfg.EXPECT().OrdererConfig("example2.com").Return(nil, false, false) // not found
-	mockEndpoingCfg.EXPECT().OrdererConfig("example3.com").Return(nil, false, true) // excluded
+	mockEndpoingCfg.EXPECT().OrdererConfig("example2.com").Return(nil, false, false)            // not found
+	mockEndpoingCfg.EXPECT().OrdererConfig("example3.com").Return(nil, false, true)             // excluded
 
 	ctx.SetEndpointConfig(mockEndpoingCfg)
 
@@ -372,11 +371,11 @@ func TestExcludedOrdrerer(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotEmpty(t, o)
 	assert.Equal(t, 1, len(o),
-		"expected 1 orderer from response orderers list since 1 orderer is not found " +
-		"and another is excluded")
+		"expected 1 orderer from response orderers list since 1 orderer is not found "+
+			"and another is excluded")
 }
 
-//endpointConfigEntity contains endpoint config elements needed by endpointconfig
+// endpointConfigEntity contains endpoint config elements needed by endpointconfig
 type endpointConfigEntity struct {
 	Channels      map[string]fab.ChannelEndpointConfig
 	Organizations map[string]fabImpl.OrganizationConfig

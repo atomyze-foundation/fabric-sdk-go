@@ -297,11 +297,11 @@ func (c *Client) handleX509Enroll(req *api.EnrollmentRequest) (*EnrollmentRespon
 }
 
 // Handles enrollment request for an Idemix credential
-// 1. Sends a request with empty body to the /api/v1/idemix/credentail REST endpoint
-//    of the server to get a Nonce from the CA
-// 2. Constructs a credential request using the nonce, CA's idemix public key
-// 3. Sends a request with the CredentialRequest object in the body to the
-//    /api/v1/idemix/credentail REST endpoint to get a credential
+//  1. Sends a request with empty body to the /api/v1/idemix/credentail REST endpoint
+//     of the server to get a Nonce from the CA
+//  2. Constructs a credential request using the nonce, CA's idemix public key
+//  3. Sends a request with the CredentialRequest object in the body to the
+//     /api/v1/idemix/credentail REST endpoint to get a credential
 func (c *Client) handleIdemixEnroll(req *api.EnrollmentRequest) (*EnrollmentResponse, error) {
 	log.Infof("Successfully received Idemix credential from CA %s", req.CAName)
 	return nil, errors.New("idemix enroll not supported")

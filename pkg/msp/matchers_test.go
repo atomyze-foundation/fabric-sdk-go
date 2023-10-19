@@ -28,8 +28,8 @@ const (
 	overridedTargetServerName = "ca.override.example.com"
 )
 
-//TestCAURLOverride
-//Scenario: Using entity mather to override CA URL
+// TestCAURLOverride
+// Scenario: Using entity mather to override CA URL
 func TestCAURLOverride(t *testing.T) {
 
 	//Test basic entity matcher
@@ -74,7 +74,7 @@ func testCAEntityMatcher(t *testing.T, configPath string) {
 	assert.Equal(t, overridedTargetServerName, caConfig.GRPCOptions["ssl-target-name-override"])
 }
 
-//TestCAEntityMatcherIgnoreEndpoint tests CA entity matcher 'IgnoreEndpoint' option
+// TestCAEntityMatcherIgnoreEndpoint tests CA entity matcher 'IgnoreEndpoint' option
 // If marked 'IgnoreEndpoint: true' then corresponding CA will be ignored
 func TestCAEntityMatcherIgnoreEndpoint(t *testing.T) {
 	//Without entity matcher

@@ -12,7 +12,7 @@ import (
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/fab"
 )
 
-//PickRandomNPeerConfigs picks N random  unique peer configs from given channel peer list
+// PickRandomNPeerConfigs picks N random  unique peer configs from given channel peer list
 func PickRandomNPeerConfigs(chPeers []fab.ChannelPeer, n int) []fab.PeerConfig {
 
 	var result []fab.PeerConfig

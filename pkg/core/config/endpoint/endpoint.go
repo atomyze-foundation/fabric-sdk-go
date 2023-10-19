@@ -39,7 +39,7 @@ func ToAddress(url string) string {
 	return url
 }
 
-//AttemptSecured is a utility function which verifies URL and returns if secured connections needs to established
+// AttemptSecured is a utility function which verifies URL and returns if secured connections needs to established
 // for protocol 'grpcs' in URL returns true
 // for protocol 'grpc' in URL returns false
 // for no protocol mentioned, returns !allowInSecure
@@ -89,8 +89,8 @@ func (cfg *TLSConfig) Bytes() []byte {
 	return cfg.bytes
 }
 
-//LoadBytes preloads bytes from Pem/Path
-//Pem takes precedence over Path
+// LoadBytes preloads bytes from Pem/Path
+// Pem takes precedence over Path
 func (cfg *TLSConfig) LoadBytes() error {
 	var err error
 	if cfg.Pem != "" {

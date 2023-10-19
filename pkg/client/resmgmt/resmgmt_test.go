@@ -1751,7 +1751,7 @@ oG5kQQIgQAe4OOKYhJdh3f7URaKfGTf492/nmRmtK+ySKjpHSrU=
 -----END CERTIFICATE-----
 `
 
-//endpointConfigEntity contains endpoint config elements needed by endpointconfig
+// endpointConfigEntity contains endpoint config elements needed by endpointconfig
 type endpointConfigEntity struct {
 	Orderers map[string]fabImpl.OrdererConfig
 	Channels map[string]fabImpl.ChannelEndpointConfig

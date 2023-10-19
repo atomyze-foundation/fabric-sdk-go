@@ -1,3 +1,4 @@
+//go:build testing
 // +build testing
 
 /*
@@ -12,7 +13,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/pkg/errors"
 	contextAPI "github.com/hyperledger/fabric-sdk-go/pkg/common/providers/context"
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/fab"
 	pfab "github.com/hyperledger/fabric-sdk-go/pkg/common/providers/fab"
@@ -20,6 +20,7 @@ import (
 	discmocks "github.com/hyperledger/fabric-sdk-go/pkg/fab/discovery/mocks"
 	"github.com/hyperledger/fabric-sdk-go/pkg/fab/mocks"
 	mspmocks "github.com/hyperledger/fabric-sdk-go/pkg/msp/test/mockmsp"
+	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

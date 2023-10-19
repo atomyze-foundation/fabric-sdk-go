@@ -351,7 +351,7 @@ func (sdk *FabricSDK) CloseContext(ctxt fab.ClientContext) {
 	}
 }
 
-//Config returns config backend used by all SDK config types
+// Config returns config backend used by all SDK config types
 func (sdk *FabricSDK) Config() (core.ConfigBackend, error) {
 	if sdk.opts.ConfigBackend == nil {
 		return nil, errors.New("unable to find config backend")
@@ -359,7 +359,7 @@ func (sdk *FabricSDK) Config() (core.ConfigBackend, error) {
 	return lookup.New(sdk.opts.ConfigBackend...), nil
 }
 
-//Context creates and returns context client which has all the necessary providers
+// Context creates and returns context client which has all the necessary providers
 func (sdk *FabricSDK) Context(options ...ContextOption) contextApi.ClientProvider {
 
 	clientProvider := func() (contextApi.Client, error) {
@@ -374,7 +374,7 @@ func (sdk *FabricSDK) Context(options ...ContextOption) contextApi.ClientProvide
 	return clientProvider
 }
 
-//ChannelContext creates and returns channel context
+// ChannelContext creates and returns channel context
 func (sdk *FabricSDK) ChannelContext(channelID string, options ...ContextOption) contextApi.ChannelProvider {
 
 	channelProvider := func() (contextApi.Channel, error) {
@@ -407,7 +407,7 @@ func (sdk *FabricSDK) initializeCryptoSuite(cryptoSuiteConfig core.CryptoSuiteCo
 	return nil
 }
 
-//loadConfigs load config from config backend when configs are not provided through opts
+// loadConfigs load config from config backend when configs are not provided through opts
 func (sdk *FabricSDK) loadConfigs(configProvider core.ConfigProvider) (*configs, error) {
 	c := &configs{
 		identityConfig:    sdk.opts.IdentityConfig,
@@ -462,7 +462,7 @@ func (sdk *FabricSDK) loadConfigs(configProvider core.ConfigProvider) (*configs,
 	return c, nil
 }
 
-//loadEndpointConfig loads config from config backend when configs are not provided through opts or override missing interfaces from opts with config backend
+// loadEndpointConfig loads config from config backend when configs are not provided through opts or override missing interfaces from opts with config backend
 func (sdk *FabricSDK) loadEndpointConfig(configBackend ...core.ConfigBackend) (fab.EndpointConfig, error) {
 	endpointConfigOpt, ok := sdk.opts.endpointConfig.(*fabImpl.EndpointConfigOptions)
 
