@@ -22,7 +22,7 @@ jobs:
       - name: setup go
         uses: actions/setup-go@v4
         with:
-          go-version: 1.20.10
+          go-version: 1.14.15
       - name: install go tool
         run: |
           GO111MODULE=off go get -u github.com/myitcv/gobin
@@ -30,7 +30,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y gcc haveged libtool make
-      - name: start
+      - name: unit-test
         run: |
           make unit-test
 
