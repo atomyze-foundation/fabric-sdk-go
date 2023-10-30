@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package msp
@@ -23,7 +23,7 @@ type IdentityManagerProvider interface {
 	IdentityManager(orgName string) (IdentityManager, bool)
 }
 
-// IdentityConfig contains identity configurations
+//IdentityConfig contains identity configurations
 type IdentityConfig interface {
 	Client() *ClientConfig
 	CAConfig(caID string) (*CAConfig, bool)

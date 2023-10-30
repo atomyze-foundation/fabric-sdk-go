@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package wrapper
@@ -13,14 +13,14 @@ import (
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/core"
 )
 
-// NewCryptoSuite returns cryptosuite adaptor for given bccsp.BCCSP implementation
+//NewCryptoSuite returns cryptosuite adaptor for given bccsp.BCCSP implementation
 func NewCryptoSuite(bccsp bccsp.BCCSP) core.CryptoSuite {
 	return &CryptoSuite{
 		BCCSP: bccsp,
 	}
 }
 
-// GetKey returns implementation of of cryptosuite.Key
+//GetKey returns implementation of of cryptosuite.Key
 func GetKey(newkey bccsp.Key) core.Key {
 	return &key{newkey}
 }

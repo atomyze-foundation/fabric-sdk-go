@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package comm
@@ -12,9 +12,9 @@ import (
 	"os"
 	"testing"
 
-	pb "github.com/hyperledger/fabric-protos-go/peer"
 	eventmocks "github.com/hyperledger/fabric-sdk-go/pkg/fab/events/mocks"
 	"github.com/hyperledger/fabric-sdk-go/pkg/fab/mocks"
+	pb "github.com/hyperledger/fabric-protos-go/peer"
 	"google.golang.org/grpc"
 )
 

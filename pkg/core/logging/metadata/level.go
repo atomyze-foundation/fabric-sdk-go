@@ -1,14 +1,14 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package metadata
 
 import "github.com/hyperledger/fabric-sdk-go/pkg/core/logging/api"
 
-// ModuleLevels maintains log levels based on module
+//ModuleLevels maintains log levels based on module
 type ModuleLevels struct {
 	levels map[string]api.Level
 }

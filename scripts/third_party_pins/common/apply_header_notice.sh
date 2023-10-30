@@ -2,14 +2,14 @@
 #
 # Copyright SecureKey Technologies Inc. All Rights Reserved.
 #
-# SPDX-License-Identifier: [Default license](LICENSE)
+# SPDX-License-Identifier: Apache-2.0
 #
 
 set -e
 
 FILE=$1
 NOTICE=$'Notice: This file has been modified for Hyperledger Fabric SDK Go usage.\nPlease review third_party pinning scripts and patches for more details.'
-SPDX_LICENSE_ID="SPDX-License-Identifier: [Default license](LICENSE)"
+SPDX_LICENSE_ID="SPDX-License-Identifier: Apache-2.0"
 OLD_APACHE_LICENSE_ID="http://www.apache.org/licenses/LICENSE-2.0"
 NONE_LICENSE_ID="::NONE::"
 ALLOW_NONE_LICENSE_ID="${ALLOW_NONE_LICENSE_ID:-false}"

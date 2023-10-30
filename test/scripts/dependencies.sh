@@ -2,7 +2,7 @@
 #
 # Copyright SecureKey Technologies Inc. All Rights Reserved.
 #
-# SPDX-License-Identifier: [Default license](LICENSE)
+# SPDX-License-Identifier: Apache-2.0
 #
 # This script installs dependencies for testing tools
 # Environment variables that affect this script:

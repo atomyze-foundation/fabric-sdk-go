@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package modlog
@@ -22,7 +22,7 @@ const (
 	moduleName2 = "module-xyz-deftest"
 )
 
-// change the output to buffer for tests
+//change the output to buffer for tests
 var buf bytes.Buffer
 
 func TestDefaultLoggingWithoutCallerInfo(t *testing.T) {

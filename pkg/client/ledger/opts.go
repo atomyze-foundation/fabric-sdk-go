@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package ledger
@@ -32,10 +32,10 @@ func WithDefaultTargetFilter(filter fab.TargetFilter) ClientOption {
 	}
 }
 
-// RequestOption func for each requestOptions argument
+//RequestOption func for each requestOptions argument
 type RequestOption func(ctx context.Client, opts *requestOptions) error
 
-// requestOptions contains options for operations performed by LedgerClient
+//requestOptions contains options for operations performed by LedgerClient
 type requestOptions struct {
 	Targets       []fab.Peer                        // target peers
 	TargetFilter  fab.TargetFilter                  // target filter
@@ -45,7 +45,7 @@ type requestOptions struct {
 	ParentContext reqContext.Context                //parent grpc context for ledger operations
 }
 
-// WithTargets allows for overriding of the target peers per request.
+//WithTargets allows for overriding of the target peers per request.
 func WithTargets(targets ...fab.Peer) RequestOption {
 	return func(ctx context.Client, opts *requestOptions) error {
 
@@ -95,7 +95,7 @@ func WithTargetFilter(targetFilter fab.TargetFilter) RequestOption {
 	}
 }
 
-// WithMaxTargets specifies maximum number of targets to select per request.
+//WithMaxTargets specifies maximum number of targets to select per request.
 // Default value for maximum number of targets is 1.
 func WithMaxTargets(maxTargets int) RequestOption {
 	return func(ctx context.Client, opts *requestOptions) error {
@@ -104,7 +104,7 @@ func WithMaxTargets(maxTargets int) RequestOption {
 	}
 }
 
-// WithMinTargets specifies minimum number of targets that have to respond with no error (or agree on result).
+//WithMinTargets specifies minimum number of targets that have to respond with no error (or agree on result).
 // Default value for minimum number of targets is 1.
 func WithMinTargets(minTargets int) RequestOption {
 	return func(ctx context.Client, opts *requestOptions) error {
@@ -113,8 +113,8 @@ func WithMinTargets(minTargets int) RequestOption {
 	}
 }
 
-// WithTimeout encapsulates key value pairs of timeout type, timeout duration to Options
-// for QueryInfo, QueryBlock, QueryBlockByHash,  QueryBlockByTxID, QueryTransaction, QueryConfig functions
+//WithTimeout encapsulates key value pairs of timeout type, timeout duration to Options
+//for QueryInfo, QueryBlock, QueryBlockByHash,  QueryBlockByTxID, QueryTransaction, QueryConfig functions
 func WithTimeout(timeoutType fab.TimeoutType, timeout time.Duration) RequestOption {
 	return func(ctx context.Client, o *requestOptions) error {
 		if o.Timeouts == nil {
@@ -125,7 +125,7 @@ func WithTimeout(timeoutType fab.TimeoutType, timeout time.Duration) RequestOpti
 	}
 }
 
-// WithParentContext encapsulates grpc parent context
+//WithParentContext encapsulates grpc parent context
 func WithParentContext(parentContext reqContext.Context) RequestOption {
 	return func(ctx context.Client, o *requestOptions) error {
 		o.ParentContext = parentContext

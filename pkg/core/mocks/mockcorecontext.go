@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package mocks
@@ -30,7 +30,7 @@ func (m *MockCoreContext) SigningManager() core.SigningManager {
 	return m.MockSigningManager
 }
 
-// CryptoSuiteConfig ...
+//CryptoSuiteConfig ...
 func (m *MockCoreContext) CryptoSuiteConfig() core.CryptoSuiteConfig {
 	return m.MockCryptoSuiteConfig
 }

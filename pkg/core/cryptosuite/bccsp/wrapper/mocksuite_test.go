@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package wrapper
@@ -14,7 +14,7 @@ import (
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/core"
 )
 
-// getSuiteByConfig returns cryptosuite adaptor for bccsp loaded according to given config
+//getSuiteByConfig returns cryptosuite adaptor for bccsp loaded according to given config
 func getSuiteByConfig(config core.CryptoSuiteConfig) (core.CryptoSuite, error) {
 	opts := getOptsByConfig(config)
 	bccsp, err := getBCCSPFromOpts(opts)
@@ -31,7 +31,7 @@ func getBCCSPFromOpts(config *bccspSw.SwOpts) (bccsp.BCCSP, error) {
 	return f.Get(config)
 }
 
-// getOptsByConfig Returns Factory opts for given SDK config
+//getOptsByConfig Returns Factory opts for given SDK config
 func getOptsByConfig(c core.CryptoSuiteConfig) *bccspSw.SwOpts {
 	// TODO: delete this check
 	if c.SecurityProvider() != "SW" {

@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package invoke
@@ -13,17 +13,17 @@ import (
 	"github.com/pkg/errors"
 )
 
-// NewSignatureValidationHandler returns a handler that validates an endorsement
+//NewSignatureValidationHandler returns a handler that validates an endorsement
 func NewSignatureValidationHandler(next ...Handler) *SignatureValidationHandler {
 	return &SignatureValidationHandler{next: getNext(next)}
 }
 
-// SignatureValidationHandler for transaction proposal response filtering
+//SignatureValidationHandler for transaction proposal response filtering
 type SignatureValidationHandler struct {
 	next Handler
 }
 
-// Handle for Filtering proposal response
+//Handle for Filtering proposal response
 func (f *SignatureValidationHandler) Handle(requestContext *RequestContext, clientContext *ClientContext) {
 	//Filter tx proposal responses
 	err := f.validate(requestContext.Response.Responses, clientContext)

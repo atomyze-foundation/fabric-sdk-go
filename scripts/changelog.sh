@@ -2,7 +2,7 @@
 #
 # Copyright IBM Corp, SecureKey Technologies Inc. All Rights Reserved.
 #
-# SPDX-License-Identifier: [Default license](LICENSE)
+# SPDX-License-Identifier: Apache-2.0
 #
 # to update CHANGELOG.md, run this script with the latest commit of the latest release number found in CHANGELOG.md
 #

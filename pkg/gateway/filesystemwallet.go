@@ -1,7 +1,7 @@
 /*
 Copyright 2020 IBM All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package gateway
@@ -23,12 +23,11 @@ type fileSystemWalletStore struct {
 
 // NewFileSystemWallet creates an instance of a wallet, held in memory.
 // This implementation is not backed by a persistent store.
+//  Parameters:
+//  path specifies where on the filesystem to store the wallet.
 //
-//	Parameters:
-//	path specifies where on the filesystem to store the wallet.
-//
-//	Returns:
-//	A Wallet object.
+//  Returns:
+//  A Wallet object.
 func NewFileSystemWallet(path string) (*Wallet, error) {
 	cleanPath := filepath.Clean(path)
 	err := os.MkdirAll(cleanPath, os.ModePerm)

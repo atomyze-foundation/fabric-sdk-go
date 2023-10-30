@@ -8,7 +8,7 @@
 	},
 	"scripts": { "start" : "node chaincode_example02.js" },
 	"engine-strict": true,
-	"license": "[Default license](LICENSE)",
+	"license": "Apache-2.0",
 	"dependencies": {
 		"fabric-shim": "~1.4.0"
 	}

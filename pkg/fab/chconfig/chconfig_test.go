@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 package chconfig
 
@@ -392,7 +392,7 @@ func getPeerWithConfigBlockPayload(t *testing.T, peerURL string) fab.Peer {
 	return peer
 }
 
-// mockProposalProcessor to mock proposal processor for random max target test
+//mockProposalProcessor to mock proposal processor for random max target test
 type mockProposalProcessor struct {
 	name string
 }
@@ -401,7 +401,7 @@ func (pp *mockProposalProcessor) ProcessTransactionProposal(reqCtx reqContext.Co
 	return nil, errors.New("not implemented, just mock")
 }
 
-// customMockConfig to mock config to override channel configuration options
+//customMockConfig to mock config to override channel configuration options
 type customMockConfig struct {
 	*mocks.MockConfig
 	chConfig *fab.ChannelEndpointConfig
@@ -413,7 +413,7 @@ func (c *customMockConfig) ChannelConfig(name string) *fab.ChannelEndpointConfig
 	return c.chConfig
 }
 
-// customRetryHandler is wrapper around retry handler which keeps count of attempts for unit-testing
+//customRetryHandler is wrapper around retry handler which keeps count of attempts for unit-testing
 type customRetryHandler struct {
 	handler retry.Handler
 	retries int

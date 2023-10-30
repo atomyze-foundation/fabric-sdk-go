@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package pkcs11
@@ -11,7 +11,7 @@ const (
 	defaultOpenSessionRetry = 10
 )
 
-// ctxOpts options for conext handler
+//ctxOpts options for conext handler
 type ctxOpts struct {
 	//sessionCacheSize size of session cache pool
 	sessionCacheSize int
@@ -21,7 +21,7 @@ type ctxOpts struct {
 	connectionName string
 }
 
-// Options for PKCS11 ContextHandle
+//Options for PKCS11 ContextHandle
 type Options func(opts *ctxOpts)
 
 func getCtxOpts(opts ...Options) ctxOpts {
@@ -41,22 +41,22 @@ func getCtxOpts(opts ...Options) ctxOpts {
 	return ctxOptions
 }
 
-// WithSessionCacheSize size of session cache pool
+//WithSessionCacheSize size of session cache pool
 func WithSessionCacheSize(size int) Options {
 	return func(o *ctxOpts) {
 		o.sessionCacheSize = size
 	}
 }
 
-// WithOpenSessionRetry number of retry for open session logic
+//WithOpenSessionRetry number of retry for open session logic
 func WithOpenSessionRetry(count int) Options {
 	return func(o *ctxOpts) {
 		o.openSessionRetry = count
 	}
 }
 
-// WithConnectionName name of connection to avoild collision with other connection instances in cache
-// under same label and lib
+//WithConnectionName name of connection to avoild collision with other connection instances in cache
+//under same label and lib
 func WithConnectionName(name string) Options {
 	return func(o *ctxOpts) {
 		o.connectionName = name

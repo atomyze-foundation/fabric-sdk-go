@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package msp
@@ -153,12 +153,11 @@ func (c *CAClientImpl) Enroll(request *api.EnrollmentRequest) error {
 
 // CreateIdentity create a new identity with the Fabric CA server. An enrollment secret is returned which can then be used,
 // along with the enrollment ID, to enroll a new identity.
+//  Parameters:
+//  request holds info about identity
 //
-//	Parameters:
-//	request holds info about identity
-//
-//	Returns:
-//	Return identity info including secret
+//  Returns:
+//  Return identity info including secret
 func (c *CAClientImpl) CreateIdentity(request *api.IdentityRequest) (*api.IdentityResponse, error) {
 
 	if c.adapter == nil {
@@ -183,12 +182,11 @@ func (c *CAClientImpl) CreateIdentity(request *api.IdentityRequest) (*api.Identi
 }
 
 // ModifyIdentity modifies identity with the Fabric CA server.
+//  Parameters:
+//  request holds info about identity
 //
-//	Parameters:
-//	request holds info about identity
-//
-//	Returns:
-//	Return modified identity info
+//  Returns:
+//  Return modified identity info
 func (c *CAClientImpl) ModifyIdentity(request *api.IdentityRequest) (*api.IdentityResponse, error) {
 
 	if c.adapter == nil {
@@ -213,12 +211,11 @@ func (c *CAClientImpl) ModifyIdentity(request *api.IdentityRequest) (*api.Identi
 }
 
 // RemoveIdentity removes identity from the Fabric CA server.
+//  Parameters:
+//  request holds info about identity to be removed
 //
-//	Parameters:
-//	request holds info about identity to be removed
-//
-//	Returns:
-//	Return removed identity info
+//  Returns:
+//  Return removed identity info
 func (c *CAClientImpl) RemoveIdentity(request *api.RemoveIdentityRequest) (*api.IdentityResponse, error) {
 
 	if c.adapter == nil {
@@ -244,12 +241,11 @@ func (c *CAClientImpl) RemoveIdentity(request *api.RemoveIdentityRequest) (*api.
 }
 
 // GetIdentity retrieves identity information.
+//  Parameters:
+//  id is required identity id
 //
-//	Parameters:
-//	id is required identity id
-//
-//	Returns:
-//	Returns identity information
+//  Returns:
+//  Returns identity information
 func (c *CAClientImpl) GetIdentity(id, caname string) (*api.IdentityResponse, error) {
 
 	if c.adapter == nil {
@@ -271,8 +267,8 @@ func (c *CAClientImpl) GetIdentity(id, caname string) (*api.IdentityResponse, er
 
 // GetAllIdentities returns all identities that the caller is authorized to see
 //
-//	Returns:
-//	Response containing identities
+//  Returns:
+//  Response containing identities
 func (c *CAClientImpl) GetAllIdentities(caname string) ([]*api.IdentityResponse, error) {
 
 	if c.adapter == nil {

@@ -28,7 +28,7 @@ import (
 	"hash"
 )
 
-// CryptoSuite adaptor for all bccsp functionalities used by SDK
+//CryptoSuite adaptor for all bccsp functionalities used by SDK
 type CryptoSuite interface {
 
 	// KeyGen generates a key using opts.

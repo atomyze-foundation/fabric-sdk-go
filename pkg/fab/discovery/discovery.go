@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package discovery
@@ -28,9 +28,9 @@ const (
 	signerCacheSize = 10 // TODO: set an appropriate value (and perhaps make configurable)
 )
 
-// Client gives ability to send discovery request to multiple targets.
-// There are cases when multiple targets requested and some of them are hanging, recommended to cancel ctx after first successful response.
-// Note: "access denied" is a success response, so check for it after response evaluation.
+//Client gives ability to send discovery request to multiple targets.
+//There are cases when multiple targets requested and some of them are hanging, recommended to cancel ctx after first successful response.
+//Note: "access denied" is a success response, so check for it after response evaluation.
 type Client interface {
 	Send(ctx context.Context, req *Request, targets ...fab.PeerConfig) (<-chan Response, error)
 }

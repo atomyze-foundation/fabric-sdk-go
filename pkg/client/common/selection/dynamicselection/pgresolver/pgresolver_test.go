@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 package pgresolver
 
@@ -10,10 +10,10 @@ import (
 	"testing"
 	"time"
 
-	common "github.com/hyperledger/fabric-protos-go/common"
 	"github.com/hyperledger/fabric-sdk-go/internal/github.com/hyperledger/fabric/common/policydsl"
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/fab"
 	mocks "github.com/hyperledger/fabric-sdk-go/pkg/fab/mocks"
+	common "github.com/hyperledger/fabric-protos-go/common"
 )
 
 const (

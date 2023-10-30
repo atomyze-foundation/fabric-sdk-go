@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package mocks
@@ -63,7 +63,7 @@ func (f *MockInfraProvider) CreateOrdererFromConfig(cfg *fab.OrdererConfig) (fab
 	return &MockOrderer{}, nil
 }
 
-// CommManager returns comm provider
+//CommManager returns comm provider
 func (f *MockInfraProvider) CommManager() fab.CommManager {
 	return nil
 }
@@ -73,6 +73,6 @@ func (f *MockInfraProvider) SetCustomOrderer(customOrderer fab.Orderer) {
 	f.customOrderer = customOrderer
 }
 
-// Close mock close function
+//Close mock close function
 func (f *MockInfraProvider) Close() {
 }

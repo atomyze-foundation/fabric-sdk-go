@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package multisuite
@@ -13,7 +13,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-// GetSuiteByConfig returns cryptosuite adaptor for bccsp loaded according to given config
+//GetSuiteByConfig returns cryptosuite adaptor for bccsp loaded according to given config
 func GetSuiteByConfig(config core.CryptoSuiteConfig) (core.CryptoSuite, error) {
 	switch config.SecurityProvider() {
 	case "sw":

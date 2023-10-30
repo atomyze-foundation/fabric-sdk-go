@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package mocks
@@ -12,13 +12,13 @@ import (
 	"github.com/hyperledger/fabric-sdk-go/pkg/core/config"
 )
 
-// MockConfigBackend mocks config backend for unit tests
+//MockConfigBackend mocks config backend for unit tests
 type MockConfigBackend struct {
 	//KeyValueMap map to override CustomBackend key-values.
 	KeyValueMap map[string]interface{}
 }
 
-// Lookup returns or unmarshals value for given key
+//Lookup returns or unmarshals value for given key
 func (b *MockConfigBackend) Lookup(key string) (interface{}, bool) {
 	v, ok := b.KeyValueMap[key]
 	return v, ok

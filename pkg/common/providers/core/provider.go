@@ -1,12 +1,12 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package core
 
-// CryptoSuiteConfig contains sdk configuration items for cryptosuite.
+//CryptoSuiteConfig contains sdk configuration items for cryptosuite.
 type CryptoSuiteConfig interface {
 	IsSecurityEnabled() bool
 	SecurityAlgorithm() string
@@ -25,10 +25,10 @@ type Providers interface {
 	SigningManager() SigningManager
 }
 
-// ConfigProvider provides config backend for SDK
+//ConfigProvider provides config backend for SDK
 type ConfigProvider func() ([]ConfigBackend, error)
 
-// ConfigBackend backend for all config types in SDK
+//ConfigBackend backend for all config types in SDK
 type ConfigBackend interface {
 	Lookup(key string) (interface{}, bool)
 }

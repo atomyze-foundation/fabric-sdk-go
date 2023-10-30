@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package api
@@ -18,7 +18,7 @@ const (
 	DEBUG
 )
 
-// Logger - Standard logger interface
+//Logger - Standard logger interface
 type Logger interface {
 	Fatal(v ...interface{})
 

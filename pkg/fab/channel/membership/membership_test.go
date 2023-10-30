@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package membership
@@ -42,7 +42,7 @@ var peerCertToBeRevoked = filepath.Join(metadata.GetProjectPath(), metadata.Cryp
 var newCRL string
 var revokedCert string
 
-// use this one to sign CRL
+//use this one to sign CRL
 var orgTwoCA string
 
 func TestMain(m *testing.M) {
@@ -68,7 +68,7 @@ func TestMain(m *testing.M) {
 	os.Exit(m.Run())
 }
 
-// TestCertSignedWithUnknownAuthority
+//TestCertSignedWithUnknownAuthority
 func TestCertSignedWithUnknownAuthority(t *testing.T) {
 	var err error
 	goodMSPID := "GoodMSP"
@@ -97,7 +97,7 @@ func TestCertSignedWithUnknownAuthority(t *testing.T) {
 
 }
 
-// TestRevokedCertificate
+//TestRevokedCertificate
 func TestRevokedCertificate(t *testing.T) {
 
 	goodMSPID := "GoodMSP"
@@ -124,7 +124,7 @@ func TestRevokedCertificate(t *testing.T) {
 
 }
 
-// TestExpiredCertificate
+//TestExpiredCertificate
 func TestCertificateDates(t *testing.T) {
 	var err error
 	goodMSPID := "GoodMSP"

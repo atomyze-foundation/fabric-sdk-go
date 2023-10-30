@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package cfg
@@ -114,7 +114,7 @@ func (m *MetricsConfigImpl) createMetricCfg() error {
 	return nil
 }
 
-// ConfigFromBackend returns identity config implementation of given backend
+//ConfigFromBackend returns identity config implementation of given backend
 func ConfigFromBackend(coreBackend ...core.ConfigBackend) (MetricsConfig, error) {
 	//create default metrics config
 	config := &MetricsConfigImpl{backend: lookup.New(coreBackend...)}

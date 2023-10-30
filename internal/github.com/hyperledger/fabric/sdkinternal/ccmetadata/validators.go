@@ -1,7 +1,7 @@
 /*
 Copyright IBM Corp. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 /*
 Notice: This file has been modified for Hyperledger Fabric SDK Go usage.
@@ -232,8 +232,8 @@ func validateIndexJSON(indexDefinition map[string]interface{}) error {
 
 }
 
-// processIndexMap processes an interface map and wraps field names or traverses
-// the next level of the json query
+//processIndexMap processes an interface map and wraps field names or traverses
+//the next level of the json query
 func processIndexMap(jsonFragment map[string]interface{}) error {
 
 	//iterate the item in the map
@@ -289,7 +289,7 @@ func processIndexMap(jsonFragment map[string]interface{}) error {
 
 }
 
-// validateFieldMap validates the list of field objects
+//validateFieldMap validates the list of field objects
 func validateFieldMap(jsonFragment map[string]interface{}) error {
 
 	//iterate the fields to validate the sort criteria

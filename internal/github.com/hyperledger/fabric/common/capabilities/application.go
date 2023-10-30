@@ -1,7 +1,7 @@
 /*
 Copyright IBM Corp. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 /*
 Notice: This file has been modified for Hyperledger Fabric SDK Go usage.
@@ -112,8 +112,8 @@ func (ap *ApplicationProvider) V1_3Validation() bool {
 
 // V2_0Validation returns true if this channel supports transaction validation
 // as introduced in v2.0. This includes:
-//   - new chaincode lifecycle
-//   - implicit per-org collections
+//  - new chaincode lifecycle
+//  - implicit per-org collections
 func (ap *ApplicationProvider) V2_0Validation() bool {
 	return ap.v20
 }

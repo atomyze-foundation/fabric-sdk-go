@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package membership
@@ -214,7 +214,7 @@ func getFabricConfig(config *mb.MSPConfig) (*mb.FabricMSPConfig, error) {
 	return fabricConfig, nil
 }
 
-// addCertsToConfig adds cert bytes to config TLSCACertPool
+//addCertsToConfig adds cert bytes to config TLSCACertPool
 func addCertsToConfig(config fab.EndpointConfig, pemCertsList [][]byte) {
 
 	if len(pemCertsList) == 0 {

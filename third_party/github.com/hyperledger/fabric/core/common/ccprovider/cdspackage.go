@@ -26,9 +26,9 @@ import (
 
 //----- CDSData ------
 
-// CDSData is data stored in the LSCC on instantiation of a CC
-// for CDSPackage.  This needs to be serialized for ChaincodeData
-// hence the protobuf format
+//CDSData is data stored in the LSCC on instantiation of a CC
+//for CDSPackage.  This needs to be serialized for ChaincodeData
+//hence the protobuf format
 type CDSData struct {
 	//CodeHash hash of CodePackage from ChaincodeDeploymentSpec
 	CodeHash []byte `protobuf:"bytes,1,opt,name=codehash,proto3"`
@@ -39,11 +39,11 @@ type CDSData struct {
 
 //----implement functions needed from proto.Message for proto's mar/unmarshal functions
 
-// Reset resets
+//Reset resets
 func (data *CDSData) Reset() { *data = CDSData{} }
 
-// String converts to string
+//String converts to string
 func (data *CDSData) String() string { return proto.CompactTextString(data) }
 
-// ProtoMessage just exists to make proto happy
+//ProtoMessage just exists to make proto happy
 func (*CDSData) ProtoMessage() {}

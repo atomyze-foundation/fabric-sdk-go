@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package fab
@@ -45,11 +45,11 @@ func getConfigPath() string {
 	return filepath.Join(metadata.GetProjectPath(), "pkg", "core", "config", "testdata")
 }
 
-// TestAllOptionsOverride
-// Scenario: Actual peer/orderer config are overridden using entity matchers.
+//TestAllOptionsOverride
+//Scenario: Actual peer/orderer config are overridden using entity matchers.
 // Endpoint config matches given URL/name with all available entity matcher patterns first to get the
-// overrided values, rest of the options are fetched from mapped host.
-// If no entity matcher provided, then it falls back to exact match in endpoint configuration.
+//overrided values, rest of the options are fetched from mapped host.
+//If no entity matcher provided, then it falls back to exact match in endpoint configuration.
 func TestAllOptionsOverride(t *testing.T) {
 	matcherPath := filepath.Join(getConfigPath(), matchersDir, sampleMatchersOverrideAll)
 	configPath := filepath.Join(getConfigPath(), configTestFile)
@@ -97,8 +97,8 @@ func TestAllOptionsOverride(t *testing.T) {
 	assert.Equal(t, 1, len(channelConfig.Peers))
 }
 
-// TestPartialOptionsOverride
-// Scenario: Entity matchers overriding only few options (URLs) in Peer/Orderer config. Options which are not overridden
+//TestPartialOptionsOverride
+//Scenario: Entity matchers overriding only few options (URLs) in Peer/Orderer config. Options which are not overridden
 // are fetched from mapped host entity.
 func TestPartialOptionsOverride(t *testing.T) {
 	configPath := filepath.Join(getConfigPath(), configTestFile)
@@ -143,8 +143,8 @@ func TestPartialOptionsOverride(t *testing.T) {
 
 }
 
-// TestOnlyHostNameOptionsOverride
-// Scenario: Entity matchers overriding only few options(hostname overrides) in Peer/Orderer config. Options which are not overridden
+//TestOnlyHostNameOptionsOverride
+//Scenario: Entity matchers overriding only few options(hostname overrides) in Peer/Orderer config. Options which are not overridden
 // are fetched from mapped host entity.
 func TestOnlyHostNameOptionsOverride(t *testing.T) {
 	configPath := filepath.Join(getConfigPath(), configTestFile)
@@ -189,8 +189,8 @@ func TestOnlyHostNameOptionsOverride(t *testing.T) {
 
 }
 
-// TestURLMapping
-// Scenario:  A URL based entity pattern is used to return config entities with customized URLs, host overrides etc
+//TestURLMapping
+//Scenario:  A URL based entity pattern is used to return config entities with customized URLs, host overrides etc
 func TestURLMapping(t *testing.T) {
 	configPath := filepath.Join(getConfigPath(), configTestFile)
 	matcherPath := filepath.Join(getConfigPath(), matchersDir, sampleMatchersURLMapping)
@@ -375,7 +375,7 @@ func getBackendsFromFiles(files ...string) ([]core.ConfigBackend, error) {
 	return backends, nil
 }
 
-// TestDefaultPeerForNonExistingURL tests default peerConfig result for search by URL scenario
+//TestDefaultPeerForNonExistingURL tests default peerConfig result for search by URL scenario
 func TestDefaultPeerForNonExistingURL(t *testing.T) {
 	configPath := filepath.Join(getConfigPath(), configTestFile)
 	matcherPath := filepath.Join(getConfigPath(), matchersDir, sampleMatchersDefaultConfigs)
@@ -417,7 +417,7 @@ func TestDefaultPeerForNonExistingURL(t *testing.T) {
 
 }
 
-// TestDefaultOrdererForNonExistingURL tests default ordererConfig result for search by URL scenario
+//TestDefaultOrdererForNonExistingURL tests default ordererConfig result for search by URL scenario
 func TestDefaultOrdererForNonExistingURL(t *testing.T) {
 	configPath := filepath.Join(getConfigPath(), configTestFile)
 	matcherPath := filepath.Join(getConfigPath(), matchersDir, sampleMatchersDefaultConfigs)
@@ -460,17 +460,16 @@ func TestDefaultOrdererForNonExistingURL(t *testing.T) {
 
 }
 
-// TestMatchersIgnoreEndpoint tests entity matcher ignore endpoint feature
+//TestMatchersIgnoreEndpoint tests entity matcher ignore endpoint feature
 // If marked as `IgnoreEndpoint: true` then config for,
-//
-//	peer excluded in org peers
-//	peer excluded in network peers
-//	peer excluded in peer search by name
-//	peer excluded in peer search by URL
-//	orderer excluded in all orderers list
-//	orderer excluded in orderer search by name
-//	orderer excluded in orderer search by URL
-//	peer/orderer excluded in networkconfig
+//				peer excluded in org peers
+//				peer excluded in network peers
+//				peer excluded in peer search by name
+//				peer excluded in peer search by URL
+//				orderer excluded in all orderers list
+//				orderer excluded in orderer search by name
+//				orderer excluded in orderer search by URL
+//				peer/orderer excluded in networkconfig
 func TestMatchersIgnoreEndpoint(t *testing.T) {
 
 	//prepare backends for test
@@ -606,7 +605,7 @@ func testIgnoreEndpointOrdererSearch(t *testing.T, config fab.EndpointConfig) {
 
 	//Test if orderer excluded in orderer search by name
 
-	ordererConfig, ok, ignoreOrderer := config.OrdererConfig("orderer.exclude.example.com")
+	ordererConfig, ok, ignoreOrderer:= config.OrdererConfig("orderer.exclude.example.com")
 	assert.False(t, ok)
 	assert.True(t, ignoreOrderer, "orderer must be excluded")
 	assert.Nil(t, ordererConfig)

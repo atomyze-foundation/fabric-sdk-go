@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package pkcs11
@@ -18,7 +18,7 @@ import (
 
 var logger = logging.NewLogger("fabsdk/core")
 
-// GetSuiteByConfig returns cryptosuite adaptor for bccsp loaded according to given config
+//GetSuiteByConfig returns cryptosuite adaptor for bccsp loaded according to given config
 func GetSuiteByConfig(config core.CryptoSuiteConfig) (core.CryptoSuite, error) {
 	// TODO: delete this check?
 	if config.SecurityProvider() != "pkcs11" {
@@ -44,7 +44,7 @@ func getBCCSPFromOpts(config *pkcs11.PKCS11Opts) (bccsp.BCCSP, error) {
 	return csp, nil
 }
 
-// getOptsByConfig Returns Factory opts for given SDK config
+//getOptsByConfig Returns Factory opts for given SDK config
 func getOptsByConfig(c core.CryptoSuiteConfig) *pkcs11.PKCS11Opts {
 	opts := &pkcs11.PKCS11Opts{
 		SecLevel:   c.SecurityLevel(),

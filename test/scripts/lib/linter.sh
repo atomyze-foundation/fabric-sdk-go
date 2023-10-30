@@ -2,7 +2,7 @@
 #
 # Copyright SecureKey Technologies Inc. All Rights Reserved.
 #
-# SPDX-License-Identifier: [Default license](LICENSE)
+# SPDX-License-Identifier: Apache-2.0
 #
 
 GOLANGCI_LINT_PKG="github.com/golangci/golangci-lint/cmd/golangci-lint"

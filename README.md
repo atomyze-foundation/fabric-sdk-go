@@ -233,4 +233,4 @@ This document is licensed under a <a rel="license" href="http://creativecommons.
 
 ## Links
 
-* [origin](https://github.com/atomyze-foundation/fabric-sdk-go)
+* [origin](https://gitlab.n-t.io/core/library/go/fabric-sdk-go)

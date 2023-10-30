@@ -2,7 +2,7 @@
 #
 # Copyright IBM Corp, SecureKey Technologies Inc. All Rights Reserved.
 #
-# SPDX-License-Identifier: [Default license](LICENSE)
+# SPDX-License-Identifier: Apache-2.0
 #
 
 echo "Running check_license.sh"
@@ -51,7 +51,7 @@ echo "The following files are missing SPDX-License-Identifier headers:"
 echo "$missing"
 echo
 echo "Please replace the Apache license header comment text with:"
-echo "SPDX-License-Identifier: [Default license](LICENSE)"
+echo "SPDX-License-Identifier: Apache-2.0"
 
 echo
 echo "Checking committed files for traditional Apache License headers ..."

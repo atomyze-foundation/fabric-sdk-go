@@ -2,7 +2,7 @@
 #
 # Copyright SecureKey Technologies Inc. All Rights Reserved.
 #
-# SPDX-License-Identifier: [Default license](LICENSE)
+# SPDX-License-Identifier: Apache-2.0
 #
 
 # This script pins client and common package families from Hyperledger Fabric into the SDK

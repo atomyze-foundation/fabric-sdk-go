@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package mocks
@@ -47,7 +47,7 @@ func (mgr *MockCAClient) CreateIdentity(request *api.IdentityRequest) (*api.Iden
 	return nil, errors.New("not implemented")
 }
 
-// GetIdentity returns an identity by id
+//GetIdentity returns an identity by id
 func (mgr *MockCAClient) GetIdentity(id, caname string) (*api.IdentityResponse, error) {
 	return nil, errors.New("not implemented")
 }

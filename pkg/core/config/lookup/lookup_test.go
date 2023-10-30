@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package lookup
@@ -560,7 +560,7 @@ func setTrueDefaultForPeerChannelConfig() mapstructure.DecodeHookFunc {
 	}
 }
 
-// setDefault sets default value provided to map if given key not found
+//setDefault sets default value provided to map if given key not found
 func setDefault(dataMap map[string]interface{}, key string, defaultVal bool) {
 	_, ok := dataMap[key]
 	if !ok {

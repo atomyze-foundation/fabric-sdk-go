@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package invoke
@@ -488,7 +488,7 @@ func TestMergeInvocationChains(t *testing.T) {
 	})
 }
 
-// prepareHandlerContexts prepares context objects for handlers
+//prepareHandlerContexts prepares context objects for handlers
 func prepareRequestContext(request Request, opts Opts, t *testing.T) *RequestContext {
 	requestContext := &RequestContext{Request: request,
 		Opts:     opts,

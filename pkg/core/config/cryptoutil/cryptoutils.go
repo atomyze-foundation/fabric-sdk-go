@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package cryptoutil
@@ -110,7 +110,7 @@ func X509KeyPair(certPEMBlock []byte, pk core.Key, cs core.CryptoSuite) (tls.Cer
 	return cert, nil
 }
 
-// PrivateKey is signer implementation for golang client TLS
+//PrivateKey is signer implementation for golang client TLS
 type PrivateKey struct {
 	cryptoSuite core.CryptoSuite
 	key         core.Key

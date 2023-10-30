@@ -1,7 +1,7 @@
 /*
 Copyright IBM Corp. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 /*
 Notice: This file has been modified for Hyperledger Fabric SDK Go usage.
@@ -16,10 +16,8 @@ import (
 )
 
 // CCPackage encapsulates a chaincode package which can be
-//
-//	raw ChaincodeDeploymentSpec
-//	SignedChaincodeDeploymentSpec
-//
+//    raw ChaincodeDeploymentSpec
+//    SignedChaincodeDeploymentSpec
 // Attempt to keep the interface at a level with minimal
 // interface for possible generalization.
 type CCPackage interface {

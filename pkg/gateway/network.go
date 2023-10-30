@@ -1,7 +1,7 @@
 /*
 Copyright 2020 IBM All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package gateway
@@ -76,12 +76,11 @@ func (n *Network) Name() string {
 }
 
 // GetContract returns instance of a smart contract on the current network.
+//  Parameters:
+//  chaincodeID is the name of the chaincode that contains the smart contract
 //
-//	Parameters:
-//	chaincodeID is the name of the chaincode that contains the smart contract
-//
-//	Returns:
-//	A Contract object representing the smart contract
+//  Returns:
+//  A Contract object representing the smart contract
 func (n *Network) GetContract(chaincodeID string) *Contract {
 	return newContract(n, chaincodeID, "")
 }
@@ -90,37 +89,33 @@ func (n *Network) GetContract(chaincodeID string) *Contract {
 // If the chaincode instance contains more
 // than one smart contract class (available using the latest contract programming model), then an
 // individual class can be selected.
+//  Parameters:
+//  chaincodeID is the name of the chaincode that contains the smart contract
+//  name is the class name of the smart contract within the chaincode.
 //
-//	Parameters:
-//	chaincodeID is the name of the chaincode that contains the smart contract
-//	name is the class name of the smart contract within the chaincode.
-//
-//	Returns:
-//	A Contract object representing the smart contract
+//  Returns:
+//  A Contract object representing the smart contract
 func (n *Network) GetContractWithName(chaincodeID string, name string) *Contract {
 	return newContract(n, chaincodeID, name)
 }
 
 // RegisterBlockEvent registers for block events. Unregister must be called when the registration is no longer needed.
-//
-//	Returns:
-//	the registration and a channel that is used to receive events. The channel is closed when Unregister is called.
+//  Returns:
+//  the registration and a channel that is used to receive events. The channel is closed when Unregister is called.
 func (n *Network) RegisterBlockEvent() (fab.Registration, <-chan *fab.BlockEvent, error) {
 	return n.event.RegisterBlockEvent()
 }
 
 // RegisterFilteredBlockEvent registers for filtered block events. Unregister must be called when the registration is no longer needed.
-//
-//	Returns:
-//	the registration and a channel that is used to receive events. The channel is closed when Unregister is called.
+//  Returns:
+//  the registration and a channel that is used to receive events. The channel is closed when Unregister is called.
 func (n *Network) RegisterFilteredBlockEvent() (fab.Registration, <-chan *fab.FilteredBlockEvent, error) {
 	return n.event.RegisterFilteredBlockEvent()
 }
 
 // Unregister removes the given registration and closes the event channel.
-//
-//	Parameters:
-//	registration is the registration handle that was returned from RegisterBlockEvent method
+//  Parameters:
+//  registration is the registration handle that was returned from RegisterBlockEvent method
 func (n *Network) Unregister(registration fab.Registration) {
 	n.event.Unregister(registration)
 }

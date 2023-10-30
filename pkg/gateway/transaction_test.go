@@ -1,7 +1,7 @@
 /*
 Copyright 2020 IBM All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package gateway
@@ -200,7 +200,7 @@ func TestSubmitHandlerCommitError(t *testing.T) {
 
 }
 
-// prepareHandlerContexts prepares context objects for handlers
+//prepareHandlerContexts prepares context objects for handlers
 func prepareRequestContext(request invoke.Request, opts invoke.Opts, t *testing.T) *invoke.RequestContext {
 	requestContext := &invoke.RequestContext{Request: request,
 		Opts:     opts,

@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 // Package ledger enables ledger queries on specified channel on a Fabric network.
@@ -9,10 +9,10 @@ SPDX-License-Identifier: [Default license](LICENSE)
 // instance of the ledger client for each channel. Ledger client supports the following queries:
 // QueryInfo, QueryBlock, QueryBlockByHash,  QueryBlockByTxID, QueryTransaction and QueryConfig.
 //
-//	Basic Flow:
-//	1) Prepare channel context
-//	2) Create ledger client
-//	3) Query ledger
+//  Basic Flow:
+//  1) Prepare channel context
+//  2) Create ledger client
+//  3) Query ledger
 package ledger
 
 import (
@@ -119,12 +119,11 @@ func New(channelProvider context.ChannelProvider, opts ...ClientOption) (*Client
 }
 
 // QueryInfo queries for various useful blockchain information on this channel such as block height and current block hash.
+//  Parameters:
+//  options are optional request options
 //
-//	Parameters:
-//	options are optional request options
-//
-//	Returns:
-//	blockchain information
+//  Returns:
+//  blockchain information
 func (c *Client) QueryInfo(options ...RequestOption) (*fab.BlockchainInfoResponse, error) {
 
 	targets, opts, err := c.prepareRequestParams(options...)
@@ -162,13 +161,12 @@ func (c *Client) QueryInfo(options ...RequestOption) (*fab.BlockchainInfoRespons
 }
 
 // QueryBlockByHash queries the ledger for block by block hash.
+//  Parameters:
+//  blockHash is required block hash
+//  options hold optional request options
 //
-//	Parameters:
-//	blockHash is required block hash
-//	options hold optional request options
-//
-//	Returns:
-//	block information
+//  Returns:
+//  block information
 func (c *Client) QueryBlockByHash(blockHash []byte, options ...RequestOption) (*common.Block, error) {
 
 	targets, opts, err := c.prepareRequestParams(options...)
@@ -187,13 +185,12 @@ func (c *Client) QueryBlockByHash(blockHash []byte, options ...RequestOption) (*
 }
 
 // QueryBlockByTxID queries for block which contains a transaction.
+//  Parameters:
+//  txID is required transaction ID
+//  options hold optional request options
 //
-//	Parameters:
-//	txID is required transaction ID
-//	options hold optional request options
-//
-//	Returns:
-//	block information
+//  Returns:
+//  block information
 func (c *Client) QueryBlockByTxID(txID fab.TransactionID, options ...RequestOption) (*common.Block, error) {
 
 	targets, opts, err := c.prepareRequestParams(options...)
@@ -212,13 +209,12 @@ func (c *Client) QueryBlockByTxID(txID fab.TransactionID, options ...RequestOpti
 }
 
 // QueryBlock queries the ledger for Block by block number.
+//  Parameters:
+//  blockNumber is required block number(ID)
+//  options hold optional request options
 //
-//	Parameters:
-//	blockNumber is required block number(ID)
-//	options hold optional request options
-//
-//	Returns:
-//	block information
+//  Returns:
+//  block information
 func (c *Client) QueryBlock(blockNumber uint64, options ...RequestOption) (*common.Block, error) {
 
 	targets, opts, err := c.prepareRequestParams(options...)
@@ -272,13 +268,12 @@ func matchBlockData(responses []*common.Block, minTargets int) (*common.Block, e
 }
 
 // QueryTransaction queries the ledger for processed transaction by transaction ID.
+//  Parameters:
+//  txID is required transaction ID
+//  options hold optional request options
 //
-//	Parameters:
-//	txID is required transaction ID
-//	options hold optional request options
-//
-//	Returns:
-//	processed transaction information
+//  Returns:
+//  processed transaction information
 func (c *Client) QueryTransaction(transactionID fab.TransactionID, options ...RequestOption) (*pb.ProcessedTransaction, error) {
 
 	targets, opts, err := c.prepareRequestParams(options...)
@@ -313,12 +308,11 @@ func (c *Client) QueryTransaction(transactionID fab.TransactionID, options ...Re
 }
 
 // QueryConfig queries for channel configuration.
+//  Parameters:
+//  options hold optional request options
 //
-//	Parameters:
-//	options hold optional request options
-//
-//	Returns:
-//	channel configuration information
+//  Returns:
+//  channel configuration information
 func (c *Client) QueryConfig(options ...RequestOption) (fab.ChannelCfg, error) {
 
 	targets, opts, err := c.prepareRequestParams(options...)
@@ -349,7 +343,7 @@ func (c *Client) QueryConfigBlock(options ...RequestOption) (*common.Block, erro
 	return c.ledger.QueryConfigBlock(reqCtx, peersToTxnProcessors(targets), c.verifier)
 }
 
-// prepareRequestOpts Reads Opts from Option array
+//prepareRequestOpts Reads Opts from Option array
 func (c *Client) prepareRequestOpts(options ...RequestOption) (requestOptions, error) {
 	opts := requestOptions{}
 	for _, option := range options {
@@ -423,7 +417,7 @@ func (c *Client) calculateTargets(opts requestOptions) ([]fab.Peer, error) {
 	return targets[:numOfTargets], nil
 }
 
-// createRequestContext creates request context for grpc
+//createRequestContext creates request context for grpc
 func (c *Client) createRequestContext(opts *requestOptions) (reqContext.Context, reqContext.CancelFunc) {
 
 	if opts.Timeouts == nil {

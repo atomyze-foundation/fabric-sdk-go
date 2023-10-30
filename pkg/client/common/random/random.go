@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package random
@@ -12,7 +12,7 @@ import (
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/fab"
 )
 
-// PickRandomNPeerConfigs picks N random  unique peer configs from given channel peer list
+//PickRandomNPeerConfigs picks N random  unique peer configs from given channel peer list
 func PickRandomNPeerConfigs(chPeers []fab.ChannelPeer, n int) []fab.PeerConfig {
 
 	var result []fab.PeerConfig

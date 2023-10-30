@@ -1,18 +1,18 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 // Package channel enables access to a channel on a Fabric network. A channel client instance provides a handler to interact with peers on specified channel.
 // Channel client can query chaincode, execute chaincode and register/unregister for chaincode events on specific channel.
 // An application that requires interaction with multiple channels should create a separate instance of the channel client for each channel.
 //
-//	Basic Flow:
-//	1) Prepare channel client context
-//	2) Create channel client
-//	3) Execute chaincode
-//	4) Query chaincode
+//  Basic Flow:
+//  1) Prepare channel client context
+//  2) Create channel client
+//  3) Execute chaincode
+//  4) Query chaincode
 package channel
 
 import (
@@ -94,13 +94,12 @@ func New(channelProvider context.ChannelProvider, opts ...ClientOption) (*Client
 }
 
 // Query chaincode using request and optional request options
+//  Parameters:
+//  request holds info about mandatory chaincode ID and function
+//  options holds optional request options
 //
-//	Parameters:
-//	request holds info about mandatory chaincode ID and function
-//	options holds optional request options
-//
-//	Returns:
-//	the proposal responses from peer(s)
+//  Returns:
+//  the proposal responses from peer(s)
 func (cc *Client) Query(request Request, options ...RequestOption) (Response, error) {
 
 	options = append(options, addDefaultTimeout(fab.Query))
@@ -110,13 +109,12 @@ func (cc *Client) Query(request Request, options ...RequestOption) (Response, er
 }
 
 // Execute prepares and executes transaction using request and optional request options
+//  Parameters:
+//  request holds info about mandatory chaincode ID and function
+//  options holds optional request options
 //
-//	Parameters:
-//	request holds info about mandatory chaincode ID and function
-//	options holds optional request options
-//
-//	Returns:
-//	the proposal responses from peer(s)
+//  Returns:
+//  the proposal responses from peer(s)
 func (cc *Client) Execute(request Request, options ...RequestOption) (Response, error) {
 	options = append(options, addDefaultTimeout(fab.Execute))
 	options = append(options, addDefaultTargetFilter(cc.context, filter.EndorsingPeer))
@@ -145,14 +143,13 @@ func addDefaultTimeout(tt fab.TimeoutType) RequestOption {
 }
 
 // InvokeHandler invokes handler using request and optional request options provided
+//  Parameters:
+//  handler to be invoked
+//  request holds info about mandatory chaincode ID and function
+//  options holds optional request options
 //
-//	Parameters:
-//	handler to be invoked
-//	request holds info about mandatory chaincode ID and function
-//	options holds optional request options
-//
-//	Returns:
-//	the proposal responses from peer(s)
+//  Returns:
+//  the proposal responses from peer(s)
 func (cc *Client) InvokeHandler(handler invoke.Handler, request Request, options ...RequestOption) (Response, error) {
 	// Read execute tx options
 	txnOpts, err := cc.prepareOptsFromOptions(cc.context, options...)
@@ -300,22 +297,20 @@ func (cc *Client) prepareOptsFromOptions(ctx context.Client, options ...RequestO
 }
 
 // RegisterChaincodeEvent registers for chaincode events. Unregister must be called when the registration is no longer needed.
+//  Parameters:
+//  chaincodeID is the chaincode ID for which events are to be received
+//  eventFilter is the chaincode event filter (regular expression) for which events are to be received
 //
-//	Parameters:
-//	chaincodeID is the chaincode ID for which events are to be received
-//	eventFilter is the chaincode event filter (regular expression) for which events are to be received
-//
-//	Returns:
-//	the registration and a channel that is used to receive events. The channel is closed when Unregister is called.
+//  Returns:
+//  the registration and a channel that is used to receive events. The channel is closed when Unregister is called.
 func (cc *Client) RegisterChaincodeEvent(chainCodeID string, eventFilter string) (fab.Registration, <-chan *fab.CCEvent, error) {
 	// Register callback for CE
 	return cc.eventService.RegisterChaincodeEvent(chainCodeID, eventFilter)
 }
 
 // UnregisterChaincodeEvent removes the given registration and closes the event channel.
-//
-//	Parameters:
-//	registration is the registration handle that was returned from RegisterChaincodeEvent method
+//  Parameters:
+//  registration is the registration handle that was returned from RegisterChaincodeEvent method
 func (cc *Client) UnregisterChaincodeEvent(registration fab.Registration) {
 	cc.eventService.Unregister(registration)
 }

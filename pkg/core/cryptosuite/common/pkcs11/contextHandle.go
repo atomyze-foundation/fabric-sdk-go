@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package pkcs11
@@ -24,17 +24,17 @@ var ctxCache *lazycache.Cache
 var once sync.Once
 var errSlotIDChanged = fmt.Errorf("slot id changed")
 
-// LoadPKCS11ContextHandle loads PKCS11 context handler instance from underlying cache
+//LoadPKCS11ContextHandle loads PKCS11 context handler instance from underlying cache
 func LoadPKCS11ContextHandle(lib, label, pin string, opts ...Options) (*ContextHandle, error) {
 	return getInstance(&pkcs11CtxCacheKey{lib: lib, label: label, pin: pin, opts: getCtxOpts(opts...)}, false)
 }
 
-// ReloadPKCS11ContextHandle deletes PKCS11 instance from underlying cache and loads new PKCS11 context  handler in cache
+//ReloadPKCS11ContextHandle deletes PKCS11 instance from underlying cache and loads new PKCS11 context  handler in cache
 func ReloadPKCS11ContextHandle(lib, label, pin string, opts ...Options) (*ContextHandle, error) {
 	return getInstance(&pkcs11CtxCacheKey{lib: lib, label: label, pin: pin, opts: getCtxOpts(opts...)}, true)
 }
 
-// LoadContextAndLogin loads Context handle and performs login
+//LoadContextAndLogin loads Context handle and performs login
 func LoadContextAndLogin(lib, pin, label string) (*ContextHandle, error) {
 	logger.Debugf("Loading context and performing login for [%s-%s]", lib, label)
 	pkcs11Context, err := LoadPKCS11ContextHandle(lib, label, pin)
@@ -58,7 +58,7 @@ func LoadContextAndLogin(lib, pin, label string) (*ContextHandle, error) {
 	return pkcs11Context, err
 }
 
-// ContextHandle encapsulate basic mPkcs11.Ctx operations and manages sessions
+//ContextHandle encapsulate basic mPkcs11.Ctx operations and manages sessions
 type ContextHandle struct {
 	ctx                *mPkcs11.Ctx
 	slot               uint
@@ -77,7 +77,7 @@ func (handle *ContextHandle) NotifyCtxReload(ch chan struct{}) {
 	handle.reloadNotification = ch
 }
 
-// OpenSession opens a session between an application and a token.
+//OpenSession opens a session between an application and a token.
 func (handle *ContextHandle) OpenSession() (mPkcs11.SessionHandle, error) {
 
 	handle.lock.RLock()
@@ -113,8 +113,8 @@ func (handle *ContextHandle) Login(session mPkcs11.SessionHandle) error {
 	return nil
 }
 
-// ReturnSession returns session back into the session pool
-// if pool is pull or session is invalid then discards session
+//ReturnSession returns session back into the session pool
+//if pool is pull or session is invalid then discards session
 func (handle *ContextHandle) ReturnSession(session mPkcs11.SessionHandle) {
 
 	handle.lock.RLock()
@@ -164,9 +164,9 @@ func (handle *ContextHandle) CloseSession(session mPkcs11.SessionHandle) error {
 	return handle.ctx.CloseSession(session)
 }
 
-// GetSession returns session from session pool
-// if pool is empty or completely in use, creates new session
-// if new session is invalid recreates one after reloading ctx and re-login
+//GetSession returns session from session pool
+//if pool is empty or completely in use, creates new session
+//if new session is invalid recreates one after reloading ctx and re-login
 func (handle *ContextHandle) GetSession() (session mPkcs11.SessionHandle) {
 	handle.lock.RLock()
 	logger.Debugf("Total number of sessions currently in pool is %d\n", len(handle.sessions))
@@ -252,7 +252,7 @@ func (handle *ContextHandle) GenerateKeyPair(session mPkcs11.SessionHandle, m []
 	return handle.ctx.GenerateKeyPair(session, m, public, private)
 }
 
-// GenerateKey generates a secret key, creating a new key object.
+//GenerateKey generates a secret key, creating a new key object.
 func (handle *ContextHandle) GenerateKey(session mPkcs11.SessionHandle, m []*mPkcs11.Mechanism, temp []*mPkcs11.Attribute) (mPkcs11.ObjectHandle, error) {
 
 	handle.lock.RLock()
@@ -295,7 +295,7 @@ func (handle *ContextHandle) FindObjects(session mPkcs11.SessionHandle, max int)
 	return handle.ctx.FindObjects(session, max)
 }
 
-// FindObjectsFinal finishes a search for token and session objects.
+//FindObjectsFinal finishes a search for token and session objects.
 func (handle *ContextHandle) FindObjectsFinal(session mPkcs11.SessionHandle) error {
 
 	handle.lock.RLock()
@@ -309,7 +309,7 @@ func (handle *ContextHandle) FindObjectsFinal(session mPkcs11.SessionHandle) err
 	return handle.ctx.FindObjectsFinal(session)
 }
 
-// Encrypt encrypts single-part data.
+//Encrypt encrypts single-part data.
 func (handle *ContextHandle) Encrypt(session mPkcs11.SessionHandle, message []byte) ([]byte, error) {
 
 	handle.lock.RLock()
@@ -323,7 +323,7 @@ func (handle *ContextHandle) Encrypt(session mPkcs11.SessionHandle, message []by
 	return handle.ctx.Encrypt(session, message)
 }
 
-// EncryptInit initializes an encryption operation.
+//EncryptInit initializes an encryption operation.
 func (handle *ContextHandle) EncryptInit(session mPkcs11.SessionHandle, m []*mPkcs11.Mechanism, o mPkcs11.ObjectHandle) error {
 
 	handle.lock.RLock()
@@ -337,7 +337,7 @@ func (handle *ContextHandle) EncryptInit(session mPkcs11.SessionHandle, m []*mPk
 	return handle.ctx.EncryptInit(session, m, o)
 }
 
-// DecryptInit initializes a decryption operation.
+//DecryptInit initializes a decryption operation.
 func (handle *ContextHandle) DecryptInit(session mPkcs11.SessionHandle, m []*mPkcs11.Mechanism, o mPkcs11.ObjectHandle) error {
 
 	handle.lock.RLock()
@@ -351,7 +351,7 @@ func (handle *ContextHandle) DecryptInit(session mPkcs11.SessionHandle, m []*mPk
 	return handle.ctx.DecryptInit(session, m, o)
 }
 
-// Decrypt decrypts encrypted data in a single part.
+//Decrypt decrypts encrypted data in a single part.
 func (handle *ContextHandle) Decrypt(session mPkcs11.SessionHandle, cypher []byte) ([]byte, error) {
 
 	handle.lock.RLock()
@@ -475,7 +475,7 @@ func (handle *ContextHandle) DestroyObject(sh mPkcs11.SessionHandle, oh mPkcs11.
 	return handle.ctx.DestroyObject(sh, oh)
 }
 
-// FindKeyPairFromSKI finds key pair by SKI
+//FindKeyPairFromSKI finds key pair by SKI
 func (handle *ContextHandle) FindKeyPairFromSKI(session mPkcs11.SessionHandle, ski []byte, keyType bool) (*mPkcs11.ObjectHandle, error) {
 	handle.lock.RLock()
 	defer handle.lock.RUnlock()
@@ -493,9 +493,9 @@ func (handle *ContextHandle) FindKeyPairFromSKI(session mPkcs11.SessionHandle, s
 	return cachebridge.GetKeyPairFromSessionSKI(&cachebridge.KeyPairCacheKey{Mod: handle.ctx, Session: session, SKI: ski, KeyType: keyType})
 }
 
-// validateSession validates given session
-// if session is invalid recreates one after reloading ctx and re-login
-// care should be taken since handle.lock should be read locked before calling this function
+//validateSession validates given session
+//if session is invalid recreates one after reloading ctx and re-login
+//care should be taken since handle.lock should be read locked before calling this function
 func (handle *ContextHandle) validateSession(currentSession mPkcs11.SessionHandle) mPkcs11.SessionHandle {
 
 	handle.lock.RLock()
@@ -608,7 +608,7 @@ func (handle *ContextHandle) reLogin() (mPkcs11.SessionHandle, error) {
 	return newSession, nil
 }
 
-// detectErrorCondition checks if given session handle has errors
+//detectErrorCondition checks if given session handle has errors
 func (handle *ContextHandle) detectErrorCondition(currentSession mPkcs11.SessionHandle) error {
 	var e error
 	slot, ok := handle.findSlot(handle.ctx)
@@ -627,7 +627,7 @@ func (handle *ContextHandle) detectErrorCondition(currentSession mPkcs11.Session
 	return e
 }
 
-// sendNotification sends ctx reload notificatin if channel available
+//sendNotification sends ctx reload notificatin if channel available
 func (handle *ContextHandle) sendNotification() {
 	if handle.reloadNotification != nil {
 		select {
@@ -639,7 +639,7 @@ func (handle *ContextHandle) sendNotification() {
 	}
 }
 
-// disposePKCS11Ctx disposes mPkcs11.Ctx object
+//disposePKCS11Ctx disposes mPkcs11.Ctx object
 func (handle *ContextHandle) disposePKCS11Ctx() {
 
 	logger.Debugf("Disposing pkcs11 ctx for [%s, %s]", handle.lib, handle.label)
@@ -674,7 +674,7 @@ func (handle *ContextHandle) disposePKCS11Ctx() {
 	handle.ctx.Destroy()
 }
 
-// createNewPKCS11Ctx creates new mPkcs11.Ctx
+//createNewPKCS11Ctx creates new mPkcs11.Ctx
 func (handle *ContextHandle) createNewPKCS11Ctx() (*mPkcs11.Ctx, error) {
 	newCtx := mPkcs11.New(handle.lib)
 	if newCtx == nil {
@@ -698,7 +698,7 @@ func (handle *ContextHandle) createNewPKCS11Ctx() (*mPkcs11.Ctx, error) {
 	return newCtx, nil
 }
 
-// findSlot finds slot for given pkcs11 ctx and label
+//findSlot finds slot for given pkcs11 ctx and label
 func (handle *ContextHandle) findSlot(ctx *mPkcs11.Ctx) (uint, bool) {
 
 	var found bool
@@ -750,14 +750,14 @@ type pkcs11CtxCacheKey struct {
 	opts  ctxOpts
 }
 
-// String return string value for pkcs11CtxCacheKey
+//String return string value for pkcs11CtxCacheKey
 func (key *pkcs11CtxCacheKey) String() string {
 	return fmt.Sprintf("%x_%s_%s_%d_%d", key.lib, key.label, key.opts.connectionName, key.opts.sessionCacheSize, key.opts.openSessionRetry)
 }
 
-// getInstance loads ContextHandle instance from cache
-// key - cache key
-// reload - if true then deletes the existing cache instance and recreates one
+//getInstance loads ContextHandle instance from cache
+//key - cache key
+//reload - if true then deletes the existing cache instance and recreates one
 func getInstance(key lazycache.Key, reload bool) (*ContextHandle, error) {
 
 	once.Do(func() {
@@ -778,7 +778,7 @@ func getInstance(key lazycache.Key, reload bool) (*ContextHandle, error) {
 	return ref.(*ContextHandle), nil
 }
 
-// newCtxCache creates new lazycache instance of context handle cache
+//newCtxCache creates new lazycache instance of context handle cache
 func newCtxCache() *lazycache.Cache {
 	return lazycache.New(
 		"PKCS11_Context_Cache",
@@ -787,7 +787,7 @@ func newCtxCache() *lazycache.Cache {
 	)
 }
 
-// finalizer finalizer for context handler cache
+//finalizer finalizer for context handler cache
 func finalizer() lazyref.Finalizer {
 	return func(v interface{}) {
 		if handle, ok := v.(*ContextHandle); ok {
@@ -806,7 +806,7 @@ func finalizer() lazyref.Finalizer {
 	}
 }
 
-// loadLibInitializer initializer for context handler cache
+//loadLibInitializer initializer for context handler cache
 func loadLibInitializer() lazycache.EntryInitializer {
 	return func(key lazycache.Key) (interface{}, error) {
 

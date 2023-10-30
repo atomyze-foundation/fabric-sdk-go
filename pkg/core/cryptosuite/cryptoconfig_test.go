@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package cryptosuite
@@ -297,7 +297,7 @@ func TestCryptoConfigWithMultipleBackends(t *testing.T) {
 	assert.Equal(t, cryptoConfig.SecurityProviderLabel(), "TESTLABEL")
 }
 
-// getCustomBackend returns custom backend to override config values and to avoid using new config file for test scenarios
+//getCustomBackend returns custom backend to override config values and to avoid using new config file for test scenarios
 func getCustomBackend(configBackend ...core.ConfigBackend) *mocks.MockConfigBackend {
 	backendMap := make(map[string]interface{})
 	backendMap["client.BCCSP.security.enabled"], _ = configBackend[0].Lookup("client.BCCSP.security.enabled")

@@ -1,7 +1,7 @@
 /*
 Copyright 2020 IBM All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package gateway
@@ -149,9 +149,8 @@ func (txn *Transaction) Submit(args ...string) ([]byte, error) {
 }
 
 // RegisterCommitEvent registers for a commit event for this transaction.
-//
-//	Returns:
-//	the channel that is used to receive the event. The channel is closed after the event is queued.
+//  Returns:
+//  the channel that is used to receive the event. The channel is closed after the event is queued.
 func (txn *Transaction) RegisterCommitEvent() <-chan *fab.TxStatusEvent {
 	txn.eventch = make(chan *fab.TxStatusEvent, 1)
 	return txn.eventch
@@ -169,7 +168,7 @@ type commitTxHandler struct {
 	eventch chan *fab.TxStatusEvent
 }
 
-// Handle handles commit tx
+//Handle handles commit tx
 func (c *commitTxHandler) Handle(requestContext *invoke.RequestContext, clientContext *invoke.ClientContext) {
 	txnID := requestContext.Response.TransactionID
 

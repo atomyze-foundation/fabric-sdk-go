@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package metadata
@@ -13,7 +13,7 @@ import (
 	"github.com/hyperledger/fabric-sdk-go/pkg/core/logging/api"
 )
 
-// Log level names in string
+//Log level names in string
 var levelNames = []string{
 	"CRITICAL",
 	"ERROR",
@@ -32,7 +32,7 @@ func ParseLevel(level string) (api.Level, error) {
 	return api.ERROR, errors.New("logger: invalid log level")
 }
 
-// ParseString returns String repressentation of given log level
+//ParseString returns String repressentation of given log level
 func ParseString(level api.Level) string {
 	return levelNames[level]
 }

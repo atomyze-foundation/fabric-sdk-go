@@ -1,7 +1,7 @@
 /*
 Copyright 2020 IBM All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package gateway
@@ -16,8 +16,8 @@ type inMemoryWalletStore struct {
 
 // NewInMemoryWallet creates an instance of a wallet, held in memory.
 //
-//	Returns:
-//	A Wallet object.
+//  Returns:
+//  A Wallet object.
 func NewInMemoryWallet() *Wallet {
 	store := &inMemoryWalletStore{make(map[string][]byte, 10)}
 	return &Wallet{store}

@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package msp
@@ -17,9 +17,10 @@ import (
 func TestCryptoConfigPrivKeyPathV1(t *testing.T) {
 	const (
 		cryptoConfigPath = "testdata/cryptoconfig/v1/{username}"
-		username         = "user"
+		username = "user"
 	)
-	ski := []byte{0, 1}
+	ski := []byte{0,1}
+
 
 	p := cryptoConfigPrivateKeyPath(cryptoConfigPath, username, ski)
 	assert.Contains(t, p, "0001_sk")
@@ -28,9 +29,9 @@ func TestCryptoConfigPrivKeyPathV1(t *testing.T) {
 func TestCryptoConfigPrivKeyPathV2(t *testing.T) {
 	const (
 		cryptoConfigRelPath = "testdata/cryptoconfig/v2/{username}"
-		username            = "user"
+		username = "user"
 	)
-	ski := []byte{0, 1}
+	ski := []byte{0,1}
 
 	cryptoConfigPath := filepath.Join(testDir(), cryptoConfigRelPath)
 	t.Log(cryptoConfigPath)

@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package mocks
@@ -150,7 +150,7 @@ func (pc *MockProviderContext) UserStore() msp.UserStore {
 	return pc.userStore
 }
 
-// IdentityConfig returns the Identity config
+//IdentityConfig returns the Identity config
 func (pc *MockProviderContext) IdentityConfig() msp.IdentityConfig {
 	return pc.identityConfig
 }
@@ -176,32 +176,32 @@ func (pc *MockProviderContext) Sign(msg []byte) ([]byte, error) {
 	return nil, nil
 }
 
-// LocalDiscoveryProvider returns a local discovery provider
+//LocalDiscoveryProvider returns a local discovery provider
 func (pc *MockProviderContext) LocalDiscoveryProvider() fab.LocalDiscoveryProvider {
 	return pc.localDiscoveryProvider
 }
 
-// ChannelProvider returns channel provider
+//ChannelProvider returns channel provider
 func (pc *MockProviderContext) ChannelProvider() fab.ChannelProvider {
 	return pc.channelProvider
 }
 
-// SetCustomChannelProvider sets custom channel provider for unit-test purposes
+//SetCustomChannelProvider sets custom channel provider for unit-test purposes
 func (pc *MockProviderContext) SetCustomChannelProvider(customChannelProvider fab.ChannelProvider) {
 	pc.channelProvider = customChannelProvider
 }
 
-// InfraProvider returns fabric provider
+//InfraProvider returns fabric provider
 func (pc *MockProviderContext) InfraProvider() fab.InfraProvider {
 	return pc.infraProvider
 }
 
-// EndpointConfig returns mock end point config
+//EndpointConfig returns mock end point config
 func (pc *MockProviderContext) EndpointConfig() fab.EndpointConfig {
 	return pc.endpointConfig
 }
 
-// SetCustomInfraProvider sets custom fabric provider for unit-test purposes
+//SetCustomInfraProvider sets custom fabric provider for unit-test purposes
 func (pc *MockProviderContext) SetCustomInfraProvider(customInfraProvider fab.InfraProvider) {
 	pc.infraProvider = customInfraProvider
 }

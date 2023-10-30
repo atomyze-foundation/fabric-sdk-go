@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package lazycache
@@ -58,11 +58,11 @@ type Cache struct {
 }
 
 // New creates a new lazy cache.
-//   - name is the name of the cache and is only used for debugging purpose
-//   - initializer is invoked the first time an entry is being cached
-//   - opts are options for the cache. If any lazyref option is passed then a lazy reference
-//     is created for each of the cache entries to hold the actual value. This makes it possible
-//     to have expiring values and values that proactively refresh.
+// - name is the name of the cache and is only used for debugging purpose
+// - initializer is invoked the first time an entry is being cached
+// - opts are options for the cache. If any lazyref option is passed then a lazy reference
+//   is created for each of the cache entries to hold the actual value. This makes it possible
+//   to have expiring values and values that proactively refresh.
 func New(name string, initializer EntryInitializer, opts ...options.Opt) *Cache {
 	return NewWithData(name,
 		func(key Key, data interface{}) (interface{}, error) {
@@ -74,11 +74,11 @@ func New(name string, initializer EntryInitializer, opts ...options.Opt) *Cache 
 
 // NewWithData creates a new lazy cache. The provided initializer accepts optional data that
 // is passed in from Get().
-//   - name is the name of the cache and is only used for debugging purpose
-//   - initializer is invoked the first time an entry is being cached
-//   - opts are options for the cache. If any lazyref option is passed then a lazy reference
-//     is created for each of the cache entries to hold the actual value. This makes it possible
-//     to have expiring values and values that proactively refresh.
+// - name is the name of the cache and is only used for debugging purpose
+// - initializer is invoked the first time an entry is being cached
+// - opts are options for the cache. If any lazyref option is passed then a lazy reference
+//   is created for each of the cache entries to hold the actual value. This makes it possible
+//   to have expiring values and values that proactively refresh.
 func NewWithData(name string, initializer EntryInitializerWithData, opts ...options.Opt) *Cache {
 	useRef := useLazyRef(opts...)
 	if useRef {

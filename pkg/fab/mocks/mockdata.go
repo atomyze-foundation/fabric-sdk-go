@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 package mocks
@@ -94,11 +94,10 @@ func (b *MockConfigBlockBuilder) Build() *common.Block {
 }
 
 // buildBlockMetadata builds BlockMetadata that contains an array of bytes in the following order:
-//
-//	0: SIGNATURES
-//	1: LAST_CONFIG
-//	2: TRANSACTIONS_FILTER
-//	3: ORDERER
+// 	0: SIGNATURES
+// 	1: LAST_CONFIG
+// 	2: TRANSACTIONS_FILTER
+// 	3: ORDERER
 func (b *MockConfigBlockBuilder) buildBlockMetadata() *common.BlockMetadata {
 	return &common.BlockMetadata{
 		Metadata: [][]byte{

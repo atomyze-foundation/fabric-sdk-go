@@ -2,7 +2,7 @@
 #
 # Copyright SecureKey Technologies Inc. All Rights Reserved.
 #
-# SPDX-License-Identifier: [Default license](LICENSE)
+# SPDX-License-Identifier: Apache-2.0
 #
 
 set -e
@@ -11,7 +11,7 @@ FILENAME=$1
 NOTICE=$2
 LICENSEID=$3
 
-DEFAULT_LICENSEID="SPDX-License-Identifier: [Default license](LICENSE)"
+DEFAULT_LICENSEID="SPDX-License-Identifier: Apache-2.0"
 
 if [ $# -lt 2 ]; then
     scriptname=`basename $0`

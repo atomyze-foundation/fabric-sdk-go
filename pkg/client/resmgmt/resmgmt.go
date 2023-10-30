@@ -1,7 +1,7 @@
 /*
 Copyright SecureKey Technologies Inc. All Rights Reserved.
 
-SPDX-License-Identifier: [Default license](LICENSE)
+SPDX-License-Identifier: Apache-2.0
 */
 
 // Package resmgmt enables creation and update of resources on a Fabric network.
@@ -9,14 +9,14 @@ SPDX-License-Identifier: [Default license](LICENSE)
 // Administrators can also perform chaincode related operations on a peer, such as
 // installing, instantiating, and upgrading chaincode.
 //
-//	Basic Flow:
-//	1) Prepare client context
-//	2) Create resource managememt client
-//	3) Create new channel
-//	4) Peer(s) join channel
-//	5) Install chaincode onto peer(s) filesystem
-//	6) Instantiate chaincode on channel
-//	7) Query peer for channels, installed/instantiated chaincodes etc.
+//  Basic Flow:
+//  1) Prepare client context
+//  2) Create resource managememt client
+//  3) Create new channel
+//  4) Peer(s) join channel
+//  5) Install chaincode onto peer(s) filesystem
+//  6) Instantiate chaincode on channel
+//  7) Query peer for channels, installed/instantiated chaincodes etc.
 package resmgmt
 
 import (
@@ -98,7 +98,7 @@ type UpgradeCCResponse struct {
 	TransactionID fab.TransactionID
 }
 
-// requestOptions contains options for operations performed by ResourceMgmtClient
+//requestOptions contains options for operations performed by ResourceMgmtClient
 type requestOptions struct {
 	Targets       []fab.Peer                        // target peers
 	TargetFilter  fab.TargetFilter                  // target filter
@@ -110,7 +110,7 @@ type requestOptions struct {
 	Signatures []*common.ConfigSignature
 }
 
-// SaveChannelRequest holds parameters for save channel request
+//SaveChannelRequest holds parameters for save channel request
 type SaveChannelRequest struct {
 	ChannelID         string
 	ChannelConfig     io.Reader // ChannelConfig data source
@@ -125,7 +125,7 @@ type SaveChannelResponse struct {
 	TransactionID fab.TransactionID
 }
 
-// RequestOption func for each Opts argument
+//RequestOption func for each Opts argument
 type RequestOption func(ctx context.Client, opts *requestOptions) error
 
 var logger = logging.NewLogger("fabsdk/client")
@@ -197,13 +197,12 @@ func New(ctxProvider context.ClientProvider, opts ...ClientOption) (*Client, err
 }
 
 // JoinChannel allows for peers to join existing channel with optional custom options (specific peers, filtered peers). If peer(s) are not specified in options it will default to all peers that belong to client's MSP.
+//  Parameters:
+//  channel is manadatory channel name
+//  options holds optional request options
 //
-//	Parameters:
-//	channel is manadatory channel name
-//	options holds optional request options
-//
-//	Returns:
-//	an error if join fails
+//  Returns:
+//  an error if join fails
 func (rc *Client) JoinChannel(channelID string, options ...RequestOption) error {
 
 	if channelID == "" {
@@ -362,13 +361,12 @@ func (rc *Client) isChaincodeInstalled(reqCtx reqContext.Context, req InstallCCR
 
 // InstallCC allows administrators to install chaincode onto the filesystem of a peer.
 // If peer(s) are not specified in options it will default to all peers that belong to admin's MSP.
+//  Parameters:
+//  req holds info about mandatory chaincode name, path, version and policy
+//  options holds optional request options
 //
-//	Parameters:
-//	req holds info about mandatory chaincode name, path, version and policy
-//	options holds optional request options
-//
-//	Returns:
-//	install chaincode proposal responses from peer(s)
+//  Returns:
+//  install chaincode proposal responses from peer(s)
 func (rc *Client) InstallCC(req InstallCCRequest, options ...RequestOption) ([]InstallCCResponse, error) {
 	// For each peer query if chaincode installed. If cc is installed treat as success with message 'already installed'.
 	// If cc is not installed try to install, and if that fails add to the list with error and peer name.
@@ -487,14 +485,13 @@ func checkRequiredInstallCCParams(req InstallCCRequest) error {
 
 // InstantiateCC instantiates chaincode with optional custom options (specific peers, filtered peers, timeout). If peer(s) are not specified
 // in options it will default to all channel peers.
+//  Parameters:
+//  channel is manadatory channel name
+//  req holds info about mandatory chaincode name, path, version and policy
+//  options holds optional request options
 //
-//	Parameters:
-//	channel is manadatory channel name
-//	req holds info about mandatory chaincode name, path, version and policy
-//	options holds optional request options
-//
-//	Returns:
-//	instantiate chaincode response with transaction ID
+//  Returns:
+//  instantiate chaincode response with transaction ID
 func (rc *Client) InstantiateCC(channelID string, req InstantiateCCRequest, options ...RequestOption) (InstantiateCCResponse, error) {
 
 	opts, err := rc.prepareRequestOpts(options...)
@@ -511,14 +508,13 @@ func (rc *Client) InstantiateCC(channelID string, req InstantiateCCRequest, opti
 
 // UpgradeCC upgrades chaincode with optional custom options (specific peers, filtered peers, timeout). If peer(s) are not specified in options
 // it will default to all channel peers.
+//  Parameters:
+//  channel is manadatory channel name
+//  req holds info about mandatory chaincode name, path, version and policy
+//  options holds optional request options
 //
-//	Parameters:
-//	channel is manadatory channel name
-//	req holds info about mandatory chaincode name, path, version and policy
-//	options holds optional request options
-//
-//	Returns:
-//	upgrade chaincode response with transaction ID
+//  Returns:
+//  upgrade chaincode response with transaction ID
 func (rc *Client) UpgradeCC(channelID string, req UpgradeCCRequest, options ...RequestOption) (UpgradeCCResponse, error) {
 
 	opts, err := rc.prepareRequestOpts(options...)
@@ -534,13 +530,12 @@ func (rc *Client) UpgradeCC(channelID string, req UpgradeCCRequest, options ...R
 }
 
 // QueryInstalledChaincodes queries the installed chaincodes on a peer.
+//  Parameters:
+//  options hold optional request options
+//  Note: One target(peer) has to be specified using either WithTargetURLs or WithTargets request option
 //
-//	Parameters:
-//	options hold optional request options
-//	Note: One target(peer) has to be specified using either WithTargetURLs or WithTargets request option
-//
-//	Returns:
-//	list of installed chaincodes on specified peer
+//  Returns:
+//  list of installed chaincodes on specified peer
 func (rc *Client) QueryInstalledChaincodes(options ...RequestOption) (*pb.ChaincodeQueryResponse, error) {
 
 	opts, err := rc.prepareRequestOpts(options...)
@@ -559,13 +554,12 @@ func (rc *Client) QueryInstalledChaincodes(options ...RequestOption) (*pb.Chainc
 }
 
 // QueryInstantiatedChaincodes queries the instantiated chaincodes on a peer for specific channel. If peer is not specified in options it will query random peer on this channel.
+//  Parameters:
+//  channel is manadatory channel name
+//  options hold optional request options
 //
-//	Parameters:
-//	channel is manadatory channel name
-//	options hold optional request options
-//
-//	Returns:
-//	list of instantiated chaincodes
+//  Returns:
+//  list of instantiated chaincodes
 func (rc *Client) QueryInstantiatedChaincodes(channelID string, options ...RequestOption) (*pb.ChaincodeQueryResponse, error) {
 
 	opts, err := rc.prepareRequestOpts(options...)
@@ -704,13 +698,12 @@ func (rc *Client) selectRandomChannelPeer(ctx context.Channel) (fab.ProposalProc
 }
 
 // QueryChannels queries the names of all the channels that a peer has joined.
+//  Parameters:
+//  options hold optional request options
+//  Note: One target(peer) has to be specified using either WithTargetURLs or WithTargets request option
 //
-//	Parameters:
-//	options hold optional request options
-//	Note: One target(peer) has to be specified using either WithTargetURLs or WithTargets request option
-//
-//	Returns:
-//	all channels that peer has joined
+//  Returns:
+//  all channels that peer has joined
 func (rc *Client) QueryChannels(options ...RequestOption) (*pb.ChannelQueryResponse, error) {
 
 	opts, err := rc.prepareRequestOpts(options...)
@@ -921,16 +914,15 @@ func peersToTxnProcessors(peers []fab.Peer) []fab.ProposalProcessor {
 }
 
 // SaveChannel creates or updates channel.
+//  Parameters:
+//  req holds info about mandatory channel name and configuration
+//  options holds optional request options
+//  if options have signatures (WithConfigSignatures() or 1 or more WithConfigSignature() calls), then SaveChannel will
+//     use these signatures instead of creating ones for the SigningIdentities found in req.
+//	   Make sure that req.ChannelConfigPath/req.ChannelConfig have the channel config matching these signatures.
 //
-//	 Parameters:
-//	 req holds info about mandatory channel name and configuration
-//	 options holds optional request options
-//	 if options have signatures (WithConfigSignatures() or 1 or more WithConfigSignature() calls), then SaveChannel will
-//	    use these signatures instead of creating ones for the SigningIdentities found in req.
-//		   Make sure that req.ChannelConfigPath/req.ChannelConfig have the channel config matching these signatures.
-//
-//	 Returns:
-//	 save channel response with transaction ID
+//  Returns:
+//  save channel response with transaction ID
 func (rc *Client) SaveChannel(req SaveChannelRequest, options ...RequestOption) (SaveChannelResponse, error) {
 
 	opts, err := rc.prepareRequestOpts(options...)
@@ -1072,9 +1064,7 @@ func extractChConfigTx(channelConfigReader io.Reader) ([]byte, error) {
 }
 
 // CreateConfigSignature creates a signature for the given client, custom signers and chConfig from channelConfigPath argument
-//
 //	return ConfigSignature will be signed internally by the SDK. It can be passed to WithConfigSignatures() option
-//
 // Deprecated: this method is deprecated in order to use CreateConfigSignatureFromReader
 func (rc *Client) CreateConfigSignature(signer msp.SigningIdentity, channelConfigPath string) (*common.ConfigSignature, error) {
 	if channelConfigPath == "" {
@@ -1091,7 +1081,6 @@ func (rc *Client) CreateConfigSignature(signer msp.SigningIdentity, channelConfi
 }
 
 // CreateConfigSignatureFromReader creates a signature for the given client, custom signers and chConfig from io.Reader argument
-//
 //	return ConfigSignature will be signed internally by the SDK. It can be passed to WithConfigSignatures() option
 func (rc *Client) CreateConfigSignatureFromReader(signer msp.SigningIdentity, channelConfig io.Reader) (*common.ConfigSignature, error) {
 	chConfig, err := extractChConfigTx(channelConfig)
@@ -1130,12 +1119,11 @@ func (rc *Client) CreateConfigSignatureData(signer msp.SigningIdentity, channelC
 }
 
 // CreateConfigSignatureDataFromReader will prepare a SignatureHeader and the full signing []byte (signingBytes) to be used for signing a Channel Config
-//
-//		Once SigningBytes have been signed externally (signing signatureHeaderData.SigningBytes using an external tool like OpenSSL), do the following:
-//	 1. create a common.ConfigSignature{} instance
-//	 2. assign its SignatureHeader field with the returned field 'signatureHeaderData.signatureHeader'
-//	 3. assign its Signature field with the generated signature of 'signatureHeaderData.signingBytes' from the external tool
-//	 Then use WithConfigSignatures() option to pass this new instance for channel updates
+// 	Once SigningBytes have been signed externally (signing signatureHeaderData.SigningBytes using an external tool like OpenSSL), do the following:
+//  1. create a common.ConfigSignature{} instance
+//  2. assign its SignatureHeader field with the returned field 'signatureHeaderData.signatureHeader'
+//  3. assign its Signature field with the generated signature of 'signatureHeaderData.signingBytes' from the external tool
+//  Then use WithConfigSignatures() option to pass this new instance for channel updates
 func (rc *Client) CreateConfigSignatureDataFromReader(signer msp.SigningIdentity, channelConfig io.Reader) (signatureHeaderData resource.ConfigSignatureData, e error) {
 	chConfig, err := extractChConfigTx(channelConfig)
 	if err != nil {
@@ -1252,13 +1240,12 @@ func (rc *Client) getChannelConfig(channelID string, opts requestOptions) (*chco
 }
 
 // QueryConfigBlockFromOrderer config returns channel configuration block from orderer. If orderer is not provided using options it will be defaulted to channel orderer (if configured) or random orderer from configuration.
+//  Parameters:
+//  channelID is mandatory channel ID
+//  options holds optional request options
 //
-//	Parameters:
-//	channelID is mandatory channel ID
-//	options holds optional request options
-//
-//	Returns:
-//	channel configuration block
+//  Returns:
+//  channel configuration block
 func (rc *Client) QueryConfigBlockFromOrderer(channelID string, options ...RequestOption) (*common.Block, error) {
 
 	opts, err := rc.prepareRequestOpts(options...)
@@ -1279,13 +1266,12 @@ func (rc *Client) QueryConfigBlockFromOrderer(channelID string, options ...Reque
 }
 
 // QueryConfigFromOrderer config returns channel configuration from orderer. If orderer is not provided using options it will be defaulted to channel orderer (if configured) or random orderer from configuration.
+//  Parameters:
+//  channelID is mandatory channel ID
+//  options holds optional request options
 //
-//	Parameters:
-//	channelID is mandatory channel ID
-//	options holds optional request options
-//
-//	Returns:
-//	channel configuration
+//  Returns:
+//  channel configuration
 func (rc *Client) QueryConfigFromOrderer(channelID string, options ...RequestOption) (fab.ChannelCfg, error) {
 
 	opts, err := rc.prepareRequestOpts(options...)
@@ -1357,7 +1343,7 @@ func (rc *Client) prepareRequestOpts(options ...RequestOption) (requestOptions, 
 	return opts, nil
 }
 
-// createRequestContext creates request context for grpc
+//createRequestContext creates request context for grpc
 func (rc *Client) createRequestContext(opts requestOptions, defaultTimeoutType fab.TimeoutType) (reqContext.Context, reqContext.CancelFunc) {
 
 	rc.resolveTimeouts(&opts)
@@ -1369,7 +1355,7 @@ func (rc *Client) createRequestContext(opts requestOptions, defaultTimeoutType f
 	return contextImpl.NewRequest(rc.ctx, contextImpl.WithTimeout(opts.Timeouts[defaultTimeoutType]), contextImpl.WithParent(opts.ParentContext))
 }
 
-// resolveTimeouts sets default for timeouts from config if not provided through opts
+//resolveTimeouts sets default for timeouts from config if not provided through opts
 func (rc *Client) resolveTimeouts(opts *requestOptions) {
 
 	if opts.Timeouts == nil {
